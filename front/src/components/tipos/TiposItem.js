@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TableRow, TableCell, Typography, Button } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditFormDialog from './EditFormDialog';
 
 export class TiposItem extends Component {
   onClickDel = () => {
@@ -23,9 +24,7 @@ export class TiposItem extends Component {
             <Typography>{descricao}</Typography>
           </TableCell>
           <TableCell style={{ flex: 1, float: 'right' }}>
-            <Button>
-              <EditIcon></EditIcon>
-            </Button>
+            <EditFormDialog></EditFormDialog>
           </TableCell>
           <TableCell style={{ flex: 1, float: 'right' }}>
             <Button onClick={this.onClickDel}>

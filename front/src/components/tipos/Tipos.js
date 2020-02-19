@@ -35,7 +35,7 @@ export class Tipos extends Component {
   };
 
   delTipo = (codigo, callback) => {
-    Actions.deleteFromDb(codigo, callback);
+    Actions.deleteTipoFromDb(codigo, callback);
   };
 
   render() {
@@ -49,12 +49,6 @@ export class Tipos extends Component {
           <TableCell style={{ flex: 13, float: 'left' }}>
             <Typography>Descrição</Typography>
           </TableCell>
-          {/* <TableCell style={{ flex: 1, float: 'left' }}>
-            <Typography>Edit</Typography>{' '}
-          </TableCell>
-          <TableCell style={{ flex: 1 }}>
-            <Typography>Remove</Typography>
-          </TableCell> */}
         </TableRow>
 
         {this.state.tipos.map(tipo => (

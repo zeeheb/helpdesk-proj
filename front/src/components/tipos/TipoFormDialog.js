@@ -53,6 +53,7 @@ export default function TipoFormDialog() {
         <AddIcon></AddIcon>
       </Button>
       <Dialog
+        fullWidth
         open={open}
         onClose={handleClose}
         aria-labelledby='form-dialog-title'

@@ -30,7 +30,7 @@ class Actions {
       .catch(err => console.log(err));
   }
 
-  deleteFromDb(codigo, callback) {
+  deleteTipoFromDb(codigo, callback) {
     axios
       .delete(`http://localhost:3001/tipo?codigo=${codigo}`)
       .then(res => {
