@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Tipos from '../tipos/Tipos';
+import { Typography } from '@material-ui/core';
+// import { TableRow, TableCell } from '@material-ui/core';
 
 class Tipo extends Component {
+  onDelete = () => {
+    this.setState({ showError: true });
+  };
+
   render() {
     return (
       <div>
         <header style={headerStyle}>
-          <h1>Tipos</h1>
+          <Typography variant='h3'>Tipos</Typography>
           <Link style={linkStyle} to='/'>
             {' '}
-            Voltar{' '}
+            <Typography>Voltar</Typography>{' '}
           </Link>
         </header>
 
@@ -25,7 +31,8 @@ const headerStyle = {
   color: '#fff',
   textAlign: 'center',
   padding: '10px',
-  marginBottom: '10px'
+  marginBottom: '10px',
+  borderRadius: '5px'
 };
 
 const linkStyle = {

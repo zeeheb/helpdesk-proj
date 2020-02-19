@@ -3,6 +3,7 @@ import TiposItem from './TiposItem';
 import Store from '../../stores/Store';
 import Actions from '../../actions/Actions';
 import AddTipo from './AddTipo';
+import { TableRow, TableCell, Typography } from '@material-ui/core';
 
 export class Tipos extends Component {
   constructor(props) {
@@ -33,12 +34,35 @@ export class Tipos extends Component {
     });
   };
 
+  delTipo = (codigo, callback) => {
+    Actions.deleteFromDb(codigo, callback);
+  };
+
   render() {
     return (
       <div>
         <AddTipo addTipo={this.addTipo}></AddTipo>
+        <TableRow style={{ display: 'flex' }}>
+          <TableCell style={{ flex: 1 }}>
+            <Typography align='left'>Código</Typography>
+          </TableCell>
+          <TableCell style={{ flex: 13, float: 'left' }}>
+            <Typography>Descrição</Typography>
+          </TableCell>
+          {/* <TableCell style={{ flex: 1, float: 'left' }}>
+            <Typography>Edit</Typography>{' '}
+          </TableCell>
+          <TableCell style={{ flex: 1 }}>
+            <Typography>Remove</Typography>
+          </TableCell> */}
+        </TableRow>
+
         {this.state.tipos.map(tipo => (
-          <TiposItem tipo={tipo}></TiposItem>
+          <TiposItem
+            onDelete={this.props.onDelete}
+            delTipo={this.delTipo}
+            tipo={tipo}
+          ></TiposItem>
         ))}
       </div>
     );

@@ -63,7 +63,7 @@ export default function TipoFormDialog() {
             autoFocus
             margin='dense'
             id='name'
-            label='Descricao'
+            label='Descrição'
             type='text'
             fullWidth
             onChange={changeDescricao}
@@ -71,7 +71,7 @@ export default function TipoFormDialog() {
           <TextField
             margin='dense'
             id='name'
-            label='Codigo'
+            label='Código'
             type='text'
             fullWidth
             onChange={changeCodigo}

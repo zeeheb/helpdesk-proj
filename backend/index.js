@@ -95,6 +95,14 @@ app.get('/tipo', async (req, res) => {
   res.send(tipos);
 });
 
+app.delete('/tipo', async (req, res) => {
+  const params = req.query;
+
+  // const todo = await Todo.find({id: params})
+  await Tipo.findOneAndRemove({ codigo: params.codigo });
+  res.send('Apagado com sucesso');
+});
+
 // ========== SPECS
 
 const port = 3001;

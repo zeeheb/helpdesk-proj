@@ -16,7 +16,7 @@ class Actions {
         }
       })
       .then(() => {
-        this.getFromDb();
+        this.getTipoFromDb();
       })
       .catch(err => console.log(err));
   };
@@ -26,6 +26,16 @@ class Actions {
       .get('http://localhost:3001/tipo/')
       .then(res => {
         dispatch(ActionTypes.GETITEM_FROM_DB, res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  deleteFromDb(codigo, callback) {
+    axios
+      .delete(`http://localhost:3001/tipo?codigo=${codigo}`)
+      .then(res => {
+        // callback();
+        this.getTipoFromDb();
       })
       .catch(err => console.log(err));
   }
