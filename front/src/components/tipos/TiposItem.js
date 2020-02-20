@@ -24,7 +24,7 @@ export class TiposItem extends Component {
             <Typography>{descricao}</Typography>
           </TableCell>
           <TableCell style={{ flex: 1, float: 'right' }}>
-            <EditFormDialog></EditFormDialog>
+            <EditFormDialog data={this.props.tipo}></EditFormDialog>
           </TableCell>
           <TableCell style={{ flex: 1, float: 'right' }}>
             <Button onClick={this.onClickDel}>

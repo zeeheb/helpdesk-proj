@@ -6,15 +6,32 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
+import Actions from '../../actions/Actions';
 
-export default function FormDialog() {
+export default function EditFormDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [descricao, setDescricao] = React.useState(props.data.descricao);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const changeDescricao = e => {
+    setDescricao(e.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    if (!descricao) {
+      return alert('sem descricao');
+    }
+
+    const data = { descricao };
+    Actions.editTipoFromDb(data, props.data._id);
     setOpen(false);
   };
 
@@ -38,6 +55,8 @@ export default function FormDialog() {
             label='Nova descrição'
             type='text'
             fullWidth
+            onChange={changeDescricao}
+            value={descricao}
           />
         </DialogContent>
         <DialogActions>
@@ -52,8 +71,11 @@ export default function FormDialog() {
           <Button
             fullWidth
             variant='outlined'
-            onClick={handleClose}
             color='black'
+            onClick={e => {
+              onSubmit(e);
+              handleClose();
+            }}
           >
             Confirmar
           </Button>

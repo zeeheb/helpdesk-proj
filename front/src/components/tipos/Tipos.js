@@ -4,6 +4,7 @@ import Store from '../../stores/Store';
 import Actions from '../../actions/Actions';
 import AddTipo from './AddTipo';
 import { TableRow, TableCell, Typography } from '@material-ui/core';
+import SnackBar from './SnackBar';
 
 export class Tipos extends Component {
   constructor(props) {
@@ -38,6 +39,14 @@ export class Tipos extends Component {
     Actions.deleteTipoFromDb(codigo, callback);
   };
 
+  onDelete = () => {
+    this.setState({ showError: true });
+  };
+
+  onDeleteClose = () => {
+    this.setState({ showError: false });
+  };
+
   render() {
     return (
       <div>
@@ -51,9 +60,13 @@ export class Tipos extends Component {
           </TableCell>
         </TableRow>
 
+        {this.state.showError && (
+          <SnackBar onDeleteClose={this.onDeleteClose} />
+        )}
+
         {this.state.tipos.map(tipo => (
           <TiposItem
-            onDelete={this.props.onDelete}
+            onDelete={this.onDelete}
             delTipo={this.delTipo}
             tipo={tipo}
           ></TiposItem>

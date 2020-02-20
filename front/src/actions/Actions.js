@@ -34,6 +34,16 @@ class Actions {
     axios
       .delete(`http://localhost:3001/tipo?codigo=${codigo}`)
       .then(res => {
+        callback();
+        this.getTipoFromDb();
+      })
+      .catch(err => console.log(err));
+  }
+
+  editTipoFromDb(data, _id) {
+    axios
+      .put(`http://localhost:3001/tipo/${_id}`, data)
+      .then(res => {
         // callback();
         this.getTipoFromDb();
       })

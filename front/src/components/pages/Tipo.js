@@ -5,10 +5,6 @@ import { Typography } from '@material-ui/core';
 // import { TableRow, TableCell } from '@material-ui/core';
 
 class Tipo extends Component {
-  onDelete = () => {
-    this.setState({ showError: true });
-  };
-
   render() {
     return (
       <div>

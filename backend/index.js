@@ -103,12 +103,12 @@ app.delete('/tipo', async (req, res) => {
   res.send('Apagado com sucesso');
 });
 
-app.put('/tipo', async (req, res) => {
-  const params = req.query;
+app.put('/tipo/:_id', async (req, res) => {
+  const params = req.params;
   const body = req.body;
   // const todo = await Todo.find({id: params})
   await Tipo.findOneAndUpdate(
-    { codigo: params.codigo },
+    { _id: params._id },
     { descricao: body.descricao },
     { new: true }
   );
