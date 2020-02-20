@@ -43,7 +43,7 @@ app.delete('/chamado', async (req, res) => {
   const params = req.query;
 
   // const todo = await Todo.find({id: params})
-  await Todo.findOneAndRemove({ _id: params._id });
+  await Chamado.findOneAndRemove({ _id: params._id });
   res.send('Apagado com sucesso');
 });
 
@@ -67,18 +67,30 @@ app.get('/status', async (req, res) => {
   res.send(statuses);
 });
 
-app.delete('/chamado', async (req, res) => {
+app.delete('/status', async (req, res) => {
   const params = req.query;
 
   // const todo = await Todo.find({id: params})
-  await Todo.findOneAndRemove({ _id: params._id });
+  await Status.findOneAndRemove({ codigo: params.codigo });
   res.send('Apagado com sucesso');
+});
+
+app.put('/status/:_id', async (req, res) => {
+  const params = req.params;
+  const body = req.body;
+  // const todo = await Todo.find({id: params})
+  await Status.findOneAndUpdate(
+    { _id: params._id },
+    { descricao: body.descricao },
+    { new: true }
+  );
+  res.send('Editado com sucesso');
 });
 
 // ================= TIPO =================
 const Tipo = require('./models/Tipo');
 
-app.post('/Tipo', (req, res) => {
+app.post('/tipo', (req, res) => {
   //   console.log(req);
   console.log(req.body);
 
