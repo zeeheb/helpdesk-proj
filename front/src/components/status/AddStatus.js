@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Store from '../../stores/Store';
-import EditFormDialog from './StatusFormDialog';
+import StatusFormDialog from './StatusFormDialog';
 // import TextField from '@material-ui/core/TextField';
 
 export class AddStatus extends Component {
@@ -30,7 +30,7 @@ export class AddStatus extends Component {
   render() {
     return (
       <div>
-        <EditFormDialog></EditFormDialog>
+        <StatusFormDialog></StatusFormDialog>
       </div>
     );
   }

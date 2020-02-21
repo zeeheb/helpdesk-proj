@@ -28,12 +28,12 @@ export class Statuses extends Component {
     this.setState({ statuses: dataFromStore });
   };
 
-  addStatus = (codigo, descricao) => {
-    Actions.saveItemToDb({
-      codigo,
-      descricao
-    });
-  };
+  // addStatus = (codigo, descricao) => {
+  //   Actions.saveItemToDb({
+  //     codigo,
+  //     descricao
+  //   });
+  // };
 
   delStatus = (codigo, callback) => {
     Actions.deleteStatusFromDb(codigo, callback);
@@ -50,7 +50,8 @@ export class Statuses extends Component {
   render() {
     return (
       <div>
-        <AddStatus addTipo={this.addTipo}></AddStatus>
+        <AddStatus></AddStatus>
+
         <TableRow style={{ display: 'flex' }}>
           <TableCell style={{ flex: 1 }}>
             <Typography align='left'>Código</Typography>

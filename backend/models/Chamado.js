@@ -20,11 +20,11 @@ const ChamadoSchema = new Schema({
 
   descricao: {
     type: String
-  },
-
-  anexos: {
-    type: String
   }
+
+  // anexos: {
+  //   type: String
+  // }
 
   //   codigo: {
   //     type: String

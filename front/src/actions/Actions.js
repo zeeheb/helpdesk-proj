@@ -95,6 +95,51 @@ class Actions {
       })
       .catch(err => console.log(err));
   }
+
+  //  GET, POST, REMOVE, PUT - CHAMADOS =====================================
+  saveChamadoToDb = data => {
+    axios
+      .post('http://localhost:3001/chamado', data, {
+        headers: {
+          'content-type': 'application/json',
+          // Accept: 'application/json'
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+      .then(() => {
+        this.getChamadosFromDb();
+      })
+      .catch(err => console.log(err));
+  };
+
+  getChamadosFromDb() {
+    axios
+      .get('http://localhost:3001/chamado/')
+      .then(res => {
+        dispatch(ActionTypes.GETITEM_FROM_DB, res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  deleteChamadoFromDb(_id, callback) {
+    axios
+      .delete(`http://localhost:3001/chamado?_id=${_id}`)
+      .then(res => {
+        callback();
+        this.getStatusFromDb();
+      })
+      .catch(err => console.log(err));
+  }
+
+  editChamadoFromDb(data, _id) {
+    axios
+      .put(`http://localhost:3001/chamado/${_id}`, data)
+      .then(res => {
+        // callback();
+        this.getChamadoFromDb();
+      })
+      .catch(err => console.log(err));
+  }
 }
 
 export default new Actions();

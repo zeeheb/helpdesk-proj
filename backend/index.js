@@ -27,8 +27,8 @@ app.post('/chamado', (req, res) => {
     contato: req.body.contato,
     criticidade: req.body.criticidade,
     assunto: req.body.assunto,
-    descricao: req.body.descricao,
-    anexos: req.body.anexos
+    descricao: req.body.descricao
+    // anexos: req.body.anexos
   });
 
   newChamado.save().then(() => res.send('Chamado salvo com sucesso!!!!!!'));
