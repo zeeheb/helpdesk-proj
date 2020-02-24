@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -16,6 +16,7 @@ import {
   InputLabel
 } from '@material-ui/core';
 // import Store from '../../stores/Store';
+import SelectContato from './SelectContato';
 
 export default function MoveChamadoDialog(props) {
   const typoStyle = {
@@ -35,11 +36,11 @@ export default function MoveChamadoDialog(props) {
 
   const [open, setOpen] = React.useState(false);
   const [tipo] = React.useState(props.data.tipo);
-  const [contato] = React.useState(props.data.contato);
+  //   const [contato] = React.useState(props.data.contato);
   const [criticidade] = React.useState(props.data.criticidade);
   const [assunto] = React.useState(props.data.assunto);
   const [descricao] = React.useState(props.data.descricao);
-  //   const [contato, setContato] = React.useState(props.data.chamado);
+  const [contato, setContato] = React.useState(props.data.chamado);
   const [status, setStatus] = React.useState(props.data.chamado);
 
   const handleClickOpen = () => {
@@ -57,9 +58,9 @@ export default function MoveChamadoDialog(props) {
     setStatus(value);
   };
 
-  //   const handleChangeContato = value => {
-  //     setContato(value);
-  //   };
+  const handleChangeContato = value => {
+    setContato(value);
+  };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -90,7 +91,7 @@ export default function MoveChamadoDialog(props) {
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>
-          Movimentação de chamado
+          <Typography variant='h4'>Movimentação de chamado</Typography>
         </DialogTitle>
         <DialogContent>
           <Table size='small'>
@@ -108,7 +109,7 @@ export default function MoveChamadoDialog(props) {
                 <Typography variant='h6'>Contato: </Typography>
               </TableCell>
               <TableCell style={{ flex: 3 }}>
-                <Typography style={typoStyle}>{contato} </Typography>
+                <Typography style={typoStyle}>{props.data.contato} </Typography>
               </TableCell>
             </TableRow>
 
@@ -139,11 +140,15 @@ export default function MoveChamadoDialog(props) {
             </TableRow>
           </Table>
 
-          <InputLabel>Contato</InputLabel>
-          <TextField></TextField>
+          <Typography variant='h5' style={{ marginTop: '20px' }}>
+            Novas informações
+          </Typography>
+          <SelectContato
+            contato={contato}
+            onChangeContato={handleChangeContato}
+          ></SelectContato>
 
-          {/* <SelectContato></SelectContato> */}
-          <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
+          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
         </DialogContent>
         <DialogActions>
           <Button variant='outlined' onClick={handleClose} color='black'>

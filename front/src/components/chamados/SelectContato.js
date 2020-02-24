@@ -1,44 +1,42 @@
 import React from 'react';
-
-import InputLabel from '@material-ui/core/InputLabel';
-
-import Select from '@material-ui/core/Select';
 import Store from '../../stores/Store';
 import Actions from '../../actions/Actions';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
 
-export default function SelectStatus(props) {
-  const [tipoStatus, setStatusValor] = React.useState('');
-  const [statuses, setStatuses] = React.useState([]);
+export default function SelectContato(props) {
+  const [contatoValor, setContatoValor] = React.useState(props.contato);
+  const [contatos, setContatos] = React.useState([]);
 
   React.useEffect(() => {
     Store.addChangeListener(onChange);
-    Actions.getStatusFromDb();
+    Actions.getChamadosFromDb();
   }, []);
 
   const onChange = () => {
     const dataFromStore = Store.getItemData();
-    setStatuses(dataFromStore);
+    setContatos(dataFromStore);
   };
 
   const handleChange = event => {
-    props.onChangeStatus(event.target.value);
-    setStatusValor(event.target.value);
+    props.onChangeContato(event.target.value);
+    setContatoValor(event.target.value);
   };
 
   return (
     <div style={{ marginTop: '10px' }}>
-      <InputLabel>Status</InputLabel>
+      <InputLabel>Para o contato:</InputLabel>
       <Select
         fullWidth
         labelId='demo-simple-select-label'
         id='demo-simple-select'
-        value={tipoStatus}
+        value={contatoValor}
         onChange={handleChange}
         variant='standard'
       >
-        {statuses.map(status => (
-          <MenuItem value={status.descricao}>{status.descricao}</MenuItem>
+        {contatos.map(contato => (
+          <MenuItem value={contato.contato}>{contato.contato}</MenuItem>
         ))}
       </Select>
     </div>

@@ -29,9 +29,9 @@ export default function ChamadoFormDialog() {
     setOpen(false);
   };
 
-  //   const changeTipo = e => {
-  //     setTipo(e.target.value);
-  //   };
+  // const changeTipo = e => {
+  //   setTipo(e.target.value);
+  // };
 
   const changeContato = e => {
     setContato(e.target.value);

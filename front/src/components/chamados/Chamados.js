@@ -11,6 +11,7 @@ class Chamados extends Component {
     super(props);
     this.state = {
       chamados: []
+      // contatos: ['admin']
     };
   }
 
