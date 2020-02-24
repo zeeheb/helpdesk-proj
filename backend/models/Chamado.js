@@ -20,6 +20,10 @@ const ChamadoSchema = new Schema({
 
   descricao: {
     type: String
+  },
+
+  status: {
+    type: String
   }
 
   // anexos: {

@@ -23,11 +23,11 @@ export class TiposItem extends Component {
           <TableCell style={{ flex: 10 }}>
             <Typography>{descricao}</Typography>
           </TableCell>
-          <TableCell style={{ flex: 1, float: 'right' }}>
+          <TableCell style={{ flex: 1 }}>
             <EditFormDialog data={this.props.tipo}></EditFormDialog>
           </TableCell>
-          <TableCell style={{ flex: 1, float: 'right' }}>
-            <Button onClick={this.onClickDel}>
+          <TableCell style={{ flex: 1 }}>
+            <Button style={{ float: 'right' }} onClick={this.onClickDel}>
               <DeleteIcon></DeleteIcon>
             </Button>
           </TableCell>

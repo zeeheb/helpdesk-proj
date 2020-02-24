@@ -35,8 +35,8 @@ export class Statuses extends Component {
   //   });
   // };
 
-  delStatus = (codigo, callback) => {
-    Actions.deleteStatusFromDb(codigo, callback);
+  delStatus = (_id, callback) => {
+    Actions.deleteStatusFromDb(_id, callback);
   };
 
   onDelete = () => {
@@ -52,12 +52,20 @@ export class Statuses extends Component {
       <div>
         <AddStatus></AddStatus>
 
-        <TableRow style={{ display: 'flex' }}>
+        <TableRow
+          style={{
+            display: 'flex',
+            backgroundColor: '#e3ddcc',
+            marginTop: '10px'
+          }}
+        >
           <TableCell style={{ flex: 1 }}>
-            <Typography align='left'>Código</Typography>
+            <Typography variant='h6' align='left'>
+              Código
+            </Typography>
           </TableCell>
           <TableCell style={{ flex: 13, float: 'left' }}>
-            <Typography>Descrição</Typography>
+            <Typography variant='h6'>Descrição</Typography>
           </TableCell>
         </TableRow>
 

@@ -4,6 +4,7 @@ import Actions from '../../actions/Actions';
 import AddChamado from './AddChamado';
 import ChamadoItem from './ChamadoItem';
 import { TableRow, TableCell, Typography } from '@material-ui/core';
+import Snackbar from './Snackbar';
 
 class Chamados extends Component {
   constructor(props) {
@@ -27,8 +28,8 @@ class Chamados extends Component {
     this.setState({ chamados: dataFromStore });
   };
 
-  delChamado = (codigo, callback) => {
-    Actions.deleteChamadoFromDb(codigo, callback);
+  delChamado = (_id, callback) => {
+    Actions.deleteChamadoFromDb(_id, callback);
   };
 
   onDelete = () => {
@@ -44,7 +45,13 @@ class Chamados extends Component {
       <div>
         <AddChamado> </AddChamado>
 
-        <TableRow style={{ display: 'flex' }}>
+        <TableRow
+          style={{
+            display: 'flex',
+            backgroundColor: '#e3ddcc',
+            marginTop: '10px'
+          }}
+        >
           <TableCell style={{ flex: 1 }}>
             <Typography variant='h6' align='left'>
               Tipo
@@ -66,6 +73,10 @@ class Chamados extends Component {
             <Typography></Typography>
           </TableCell>
         </TableRow>
+
+        {this.state.showError && (
+          <Snackbar onDeleteClose={this.onDeleteClose}></Snackbar>
+        )}
 
         {this.state.chamados.map(chamado => (
           <ChamadoItem

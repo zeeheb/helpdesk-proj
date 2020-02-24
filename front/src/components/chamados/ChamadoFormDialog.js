@@ -8,15 +8,17 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
+// import SelectStatus from './SelectStatus';
+// import Store from '../../stores/Store';
 
 export default function ChamadoFormDialog() {
   const [open, setOpen] = React.useState(false);
-  const [tipo, setTipo] = React.useState(false);
-  const [contato, setContato] = React.useState(false);
-  const [criticidade, setCriticidade] = React.useState(false);
-  const [assunto, setAssunto] = React.useState(false);
-  const [descricao, setDescricao] = React.useState(false);
-  //   const [anexo, setAnexo]
+  const [tipo, setTipo] = React.useState('');
+  // const [status, setStatus] = React.useState('');
+  const [contato, setContato] = React.useState('');
+  const [criticidade, setCriticidade] = React.useState('');
+  const [assunto, setAssunto] = React.useState('');
+  const [descricao, setDescricao] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -63,6 +65,10 @@ export default function ChamadoFormDialog() {
     setTipo(value);
   };
 
+  // const handleChangeStatus = value => {
+  //   setStatus(value);
+  // };
+
   return (
     <div>
       <Button
@@ -83,10 +89,9 @@ export default function ChamadoFormDialog() {
       >
         <DialogTitle id='form-dialog-title'>Novo chamado!</DialogTitle>
         <DialogContent>
+          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
           <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
-
           <TextField
-            autoFocus
             margin='dense'
             id='name'
             label='Contato'

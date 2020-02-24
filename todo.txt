@@ -1,0 +1,5 @@
+Revisar:
+
+- botões/ícones delete/edit (posição, display)
+- botao delete sem responsividade (chamados)
+

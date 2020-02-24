@@ -37,7 +37,7 @@ export default function EditFormDialog(props) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>
+      <Button style={{ float: 'right' }} onClick={handleClickOpen}>
         <EditIcon></EditIcon>
       </Button>
       <Dialog

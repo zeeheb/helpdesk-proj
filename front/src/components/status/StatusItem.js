@@ -6,8 +6,8 @@ import EditFormDialog from './EditFormDialog';
 
 export class StatusItem extends Component {
   onClickDel = () => {
-    const codigo = this.props.status.codigo;
-    this.props.delStatus(codigo, this.props.onDelete);
+    const _id = this.props.status._id;
+    this.props.delStatus(_id, this.props.onDelete);
   };
 
   render() {

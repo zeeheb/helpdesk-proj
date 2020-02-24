@@ -1,39 +1,23 @@
 import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
+
 import InputLabel from '@material-ui/core/InputLabel';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControl from '@material-ui/core/FormControl';
+
 import Select from '@material-ui/core/Select';
 import Store from '../../stores/Store';
-// import MenuTipo from './MenuTipo';
 import Actions from '../../actions/Actions';
 import { MenuItem } from '@material-ui/core';
 
-// const useStyles = makeStyles(theme => ({
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120
-//   },
-//   selectEmpty: {
-//     marginTop: theme.spacing(2)
-//   }
-// }));
-
 export default function SelectTipo(props) {
-  //  const [ ]
-
-  //   const classes = useStyles();
   const [tipoValor, setTipoValor] = React.useState('');
   const [tipos, setTipos] = React.useState([]);
 
-  //   const inputLabel = React.useRef(null);
-  //   const [labelWidth, setLabelWidth] = React.useState(0);
+  // const [tipoStatus, setStatusValor] = React.useState('');
+  // const [statuses, setStatuses] = React.useState([]);
 
   React.useEffect(() => {
     Store.addChangeListener(onChange);
     Actions.getTipoFromDb();
-
-    // setLabelWidth(inputLabel.current.offsetWidth);
+    // Actions.getStatusFromDb();
   }, []);
 
   const onChange = () => {
@@ -42,7 +26,6 @@ export default function SelectTipo(props) {
   };
 
   const handleChange = event => {
-    // console.log(event.target.value);
     props.onChangeTipo(event.target.value);
     setTipoValor(event.target.value);
   };
@@ -56,7 +39,6 @@ export default function SelectTipo(props) {
         id='demo-simple-select'
         value={tipoValor}
         onChange={handleChange}
-        // labelWidth={labelWidth}
         variant='standard'
       >
         {tipos.map(tipo => (
@@ -64,19 +46,20 @@ export default function SelectTipo(props) {
         ))}
       </Select>
 
-      {/* <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>Age</InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={tipoValor}
-          onChange={handleChange}
-        >
-          {tipos.map(tipo => (
-            <MenuItem value={tipo.descricao}>{tipo.descricao}</MenuItem>
-          ))}
-        </Select>
-      </FormControl> */}
+      <InputLabel>Status</InputLabel>
+
+      {/* <Select
+        fullWidth
+        labelId='demo-simple-select-label'
+        id='demo-simple-select'
+        value={tipoValor}
+        onChange={handleChange}
+        variant='standard'
+      >
+        {tipos.map(tipo => (
+          <MenuItem value={tipo.descricao}>{tipo.descricao}</MenuItem>
+        ))}
+      </Select> */}
     </div>
   );
 }

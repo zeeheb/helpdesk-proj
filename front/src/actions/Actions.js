@@ -76,9 +76,9 @@ class Actions {
       .catch(err => console.log(err));
   }
 
-  deleteStatusFromDb(codigo, callback) {
+  deleteStatusFromDb(_id, callback) {
     axios
-      .delete(`http://localhost:3001/status?codigo=${codigo}`)
+      .delete(`http://localhost:3001/status?_id=${_id}`)
       .then(res => {
         callback();
         this.getStatusFromDb();

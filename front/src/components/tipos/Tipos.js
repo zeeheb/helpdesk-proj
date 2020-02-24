@@ -51,12 +51,20 @@ export class Tipos extends Component {
     return (
       <div>
         <AddTipo addTipo={this.addTipo}></AddTipo>
-        <TableRow style={{ display: 'flex' }}>
+        <TableRow
+          style={{
+            display: 'flex',
+            backgroundColor: '#e3ddcc',
+            marginTop: '10px'
+          }}
+        >
           <TableCell style={{ flex: 1 }}>
-            <Typography align='left'>Código</Typography>
+            <Typography variant='h6' align='left'>
+              Código
+            </Typography>
           </TableCell>
           <TableCell style={{ flex: 13, float: 'left' }}>
-            <Typography>Descrição</Typography>
+            <Typography variant='h6'>Descrição</Typography>
           </TableCell>
         </TableRow>
 

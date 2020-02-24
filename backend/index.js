@@ -27,7 +27,8 @@ app.post('/chamado', (req, res) => {
     contato: req.body.contato,
     criticidade: req.body.criticidade,
     assunto: req.body.assunto,
-    descricao: req.body.descricao
+    descricao: req.body.descricao,
+    status: req.body.status
     // anexos: req.body.anexos
   });
 
@@ -71,7 +72,7 @@ app.delete('/status', async (req, res) => {
   const params = req.query;
 
   // const todo = await Todo.find({id: params})
-  await Status.findOneAndRemove({ codigo: params.codigo });
+  await Status.findOneAndRemove({ _id: params._id });
   res.send('Apagado com sucesso');
 });
 
