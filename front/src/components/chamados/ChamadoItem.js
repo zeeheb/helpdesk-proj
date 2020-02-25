@@ -10,32 +10,32 @@ class ChamadoItem extends Component {
   };
 
   render() {
-    const {
-      tipo,
-      contato,
-      criticidade,
-      assunto,
-      descricao
-    } = this.props.chamado;
+    // const {
+    //   tipo,
+    //   contato,
+    //   criticidade,
+    //   assunto,
+    //   descricao
+    // } = this.props.chamado;
 
     return (
       <div>
         {/* <Button style={{ display: 'flex' }}> */}
         <TableRow style={rowStyle}>
           <TableCell style={{ flex: 1 }}>
-            <Typography>{tipo}</Typography>
+            <Typography>{this.props.chamado.tipo}</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
-            <Typography>{contato}</Typography>
+            <Typography>{this.props.chamado.contato}</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
-            <Typography>{criticidade}</Typography>
+            <Typography>{this.props.chamado.criticidade}</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
-            <Typography>{assunto}</Typography>
+            <Typography>{this.props.chamado.assunto}</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
-            <Typography>{descricao}</Typography>
+            <Typography>{this.props.chamado.descricao}</Typography>
           </TableCell>
 
           <TableCell style={{ flex: 1.5 }}>

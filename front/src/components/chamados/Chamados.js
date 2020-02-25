@@ -25,7 +25,7 @@ class Chamados extends Component {
   }
 
   onChange = () => {
-    const dataFromStore = Store.getItemData();
+    const dataFromStore = Store.getChamadosData();
     this.setState({ chamados: dataFromStore });
   };
 

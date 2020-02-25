@@ -16,16 +16,35 @@ class Actions {
         }
       })
       .then(() => {
-        this.getTipoFromDb();
+        this.getTiposFromDb();
       })
       .catch(err => console.log(err));
   };
 
-  getTipoFromDb() {
+  // getTipoFromDb() {
+  //   axios
+  //     .get('http://localhost:3001/tipo/')
+  //     .then(res => {
+  //       dispatch(ActionTypes.GETITEM_FROM_DB, res);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
+  getTiposFromDb() {
+    ////modified
     axios
       .get('http://localhost:3001/tipo/')
       .then(res => {
-        dispatch(ActionTypes.GETITEM_FROM_DB, res);
+        dispatch(ActionTypes.GET_TIPOS_FROM_DB, res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  getTipoItemFromDb() {
+    axios
+      .get('http://localhost:3001/tipo/')
+      .then(res => {
+        dispatch(ActionTypes.GET_TIPO_ITEM_FROM_DB, res);
       })
       .catch(err => console.log(err));
   }
@@ -35,7 +54,7 @@ class Actions {
       .delete(`http://localhost:3001/tipo?codigo=${codigo}`)
       .then(res => {
         callback();
-        this.getTipoFromDb();
+        this.getTiposFromDb();
       })
       .catch(err => console.log(err));
   }
@@ -45,7 +64,7 @@ class Actions {
       .put(`http://localhost:3001/tipo/${_id}`, data)
       .then(res => {
         // callback();
-        this.getTipoFromDb();
+        this.getTiposFromDb();
       })
       .catch(err => console.log(err));
   }
@@ -62,16 +81,26 @@ class Actions {
         }
       })
       .then(() => {
-        this.getStatusFromDb();
+        this.getStatusesFromDb();
       })
       .catch(err => console.log(err));
   };
 
-  getStatusFromDb() {
+  // getStatusFromDb() {
+  //   axios
+  //     .get('http://localhost:3001/status/')
+  //     .then(res => {
+  //       dispatch(ActionTypes.GET_STATUS_ITEM_FROM_DB, res);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
+  getStatusesFromDb() {
+    //// modified
     axios
       .get('http://localhost:3001/status/')
       .then(res => {
-        dispatch(ActionTypes.GETITEM_FROM_DB, res);
+        dispatch(ActionTypes.GET_STATUSES_FROM_DB, res);
       })
       .catch(err => console.log(err));
   }
@@ -81,7 +110,7 @@ class Actions {
       .delete(`http://localhost:3001/status?_id=${_id}`)
       .then(res => {
         callback();
-        this.getStatusFromDb();
+        this.getStatusesFromDb();
       })
       .catch(err => console.log(err));
   }
@@ -91,7 +120,7 @@ class Actions {
       .put(`http://localhost:3001/status/${_id}`, data)
       .then(res => {
         // callback();
-        this.getStatusFromDb();
+        this.getStatusesFromDb();
       })
       .catch(err => console.log(err));
   }
@@ -116,7 +145,7 @@ class Actions {
     axios
       .get('http://localhost:3001/chamado/')
       .then(res => {
-        dispatch(ActionTypes.GETITEM_FROM_DB, res);
+        dispatch(ActionTypes.GET_CHAMADOS_FROM_DB, res);
       })
       .catch(err => console.log(err));
   }
@@ -126,7 +155,7 @@ class Actions {
       .delete(`http://localhost:3001/chamado?_id=${_id}`)
       .then(res => {
         callback();
-        this.getStatusFromDb();
+        this.getChamadosFromDb();
       })
       .catch(err => console.log(err));
   }
@@ -136,7 +165,7 @@ class Actions {
       .put(`http://localhost:3001/chamado/${_id}`, data)
       .then(res => {
         // callback();
-        this.getChamadoFromDb();
+        this.getChamadosFromDb();
       })
       .catch(err => console.log(err));
   }

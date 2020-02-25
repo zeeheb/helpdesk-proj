@@ -16,7 +16,7 @@ export class Statuses extends Component {
 
   componentDidMount() {
     Store.addChangeListener(this.onChange);
-    Actions.getStatusFromDb();
+    Actions.getStatusesFromDb();
   }
 
   componentWillUnmount() {
@@ -24,7 +24,7 @@ export class Statuses extends Component {
   }
 
   onChange = () => {
-    const dataFromStore = Store.getItemData();
+    const dataFromStore = Store.getStatusesData();
     this.setState({ statuses: dataFromStore });
   };
 

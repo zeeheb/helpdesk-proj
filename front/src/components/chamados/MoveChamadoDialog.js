@@ -12,8 +12,8 @@ import {
   TableRow,
   Table,
   Typography,
-  TableCell,
-  InputLabel
+  TableCell
+  // InputLabel
 } from '@material-ui/core';
 // import Store from '../../stores/Store';
 import SelectContato from './SelectContato';
@@ -100,7 +100,7 @@ export default function MoveChamadoDialog(props) {
                 <Typography variant='h6'>Tipo: </Typography>
               </TableCell>
               <TableCell style={{ flex: 3 }}>
-                <Typography style={typoStyle}>{tipo} </Typography>
+                <Typography style={typoStyle}>{props.data.tipo} </Typography>
               </TableCell>
             </TableRow>
 
@@ -118,7 +118,9 @@ export default function MoveChamadoDialog(props) {
                 <Typography variant='h6'>Criticidade: </Typography>
               </TableCell>
               <TableCell style={{ flex: 3 }}>
-                <Typography style={typoStyle}>{criticidade} </Typography>
+                <Typography style={typoStyle}>
+                  {props.data.criticidade}{' '}
+                </Typography>
               </TableCell>
             </TableRow>
 
@@ -127,7 +129,7 @@ export default function MoveChamadoDialog(props) {
                 <Typography variant='h6'>Assunto: </Typography>
               </TableCell>
               <TableCell style={{ flex: 3 }}>
-                <Typography style={typoStyle}>{assunto} </Typography>
+                <Typography style={typoStyle}>{props.data.assunto} </Typography>
               </TableCell>
             </TableRow>
             <TableRow style={rowStyle}>
@@ -135,7 +137,9 @@ export default function MoveChamadoDialog(props) {
                 <Typography variant='h6'>Descrição: </Typography>
               </TableCell>
               <TableCell style={{ flex: 3 }}>
-                <Typography style={typoStyle}>{descricao} </Typography>
+                <Typography style={typoStyle}>
+                  {props.data.descricao}{' '}
+                </Typography>
               </TableCell>
             </TableRow>
           </Table>
@@ -147,9 +151,11 @@ export default function MoveChamadoDialog(props) {
             contato={contato}
             onChangeContato={handleChangeContato}
           ></SelectContato>
-
-          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
         </DialogContent>
+        {/* <SelectStatus>
+            status={status}
+            onChangeStatus={handleChangeStatus}>
+          </SelectStatus> */}
         <DialogActions>
           <Button variant='outlined' onClick={handleClose} color='black'>
             Cancelar
@@ -162,7 +168,7 @@ export default function MoveChamadoDialog(props) {
             variant='outlined'
             color='black'
           >
-            Confirmar
+            Movimentar
           </Button>
         </DialogActions>
       </Dialog>

@@ -16,7 +16,7 @@ export class Tipos extends Component {
 
   componentDidMount() {
     Store.addChangeListener(this.onChange);
-    Actions.getTipoFromDb();
+    Actions.getTiposFromDb();
   }
 
   componentWillUnmount() {
@@ -24,7 +24,7 @@ export class Tipos extends Component {
   }
 
   onChange = () => {
-    const dataFromStore = Store.getItemData();
+    const dataFromStore = Store.getTiposData();
     this.setState({ tipos: dataFromStore });
   };
 

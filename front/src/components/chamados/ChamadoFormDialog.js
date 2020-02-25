@@ -8,13 +8,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
-// import SelectStatus from './SelectStatus';
+import SelectStatus from './SelectStatus';
 // import Store from '../../stores/Store';
 
 export default function ChamadoFormDialog() {
   const [open, setOpen] = React.useState(false);
   const [tipo, setTipo] = React.useState('');
-  // const [status, setStatus] = React.useState('');
+  const [status, setStatus] = React.useState('');
   const [contato, setContato] = React.useState('');
   const [criticidade, setCriticidade] = React.useState('');
   const [assunto, setAssunto] = React.useState('');
@@ -65,9 +65,9 @@ export default function ChamadoFormDialog() {
     setTipo(value);
   };
 
-  // const handleChangeStatus = value => {
-  //   setStatus(value);
-  // };
+  const handleChangeStatus = value => {
+    setStatus(value);
+  };
 
   return (
     <div>
@@ -89,8 +89,8 @@ export default function ChamadoFormDialog() {
       >
         <DialogTitle id='form-dialog-title'>Novo chamado!</DialogTitle>
         <DialogContent>
-          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
           <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
+          <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
           <TextField
             margin='dense'
             id='name'

@@ -1,7 +1,5 @@
 import React from 'react';
-
 import InputLabel from '@material-ui/core/InputLabel';
-
 import Select from '@material-ui/core/Select';
 import Store from '../../stores/Store';
 import Actions from '../../actions/Actions';
@@ -12,12 +10,13 @@ export default function SelectStatus(props) {
   const [statuses, setStatuses] = React.useState([]);
 
   React.useEffect(() => {
-    Store.addChangeListener(onChange);
-    Actions.getStatusFromDb();
+    Store.addChangeListener(onChangeStatusFunc);
+    Actions.getStatusesFromDb();
+    // Store.removeChangeListener(onChange);
   }, []);
 
-  const onChange = () => {
-    const dataFromStore = Store.getItemData();
+  const onChangeStatusFunc = () => {
+    const dataFromStore = Store.getStatusesData();
     setStatuses(dataFromStore);
   };
 

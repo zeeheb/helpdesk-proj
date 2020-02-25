@@ -12,10 +12,11 @@ export default function SelectContato(props) {
   React.useEffect(() => {
     Store.addChangeListener(onChange);
     Actions.getChamadosFromDb();
+    // Store.removeChangeListener(onChange);
   }, []);
 
   const onChange = () => {
-    const dataFromStore = Store.getItemData();
+    const dataFromStore = Store.getChamadosData();
     setContatos(dataFromStore);
   };
 

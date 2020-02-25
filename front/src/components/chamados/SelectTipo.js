@@ -10,16 +10,17 @@ export default function SelectTipo(props) {
   const [tipos, setTipos] = React.useState([]);
 
   React.useEffect(() => {
-    Store.addChangeListener(onChange);
-    Actions.getTipoFromDb();
+    Store.addChangeListener(onChangeTipoFunc);
+    Actions.getTiposFromDb();
+    // Store.removeChangeListener(onChange);
   }, []);
   // React.useEffect(() => {
   //   Store.addChangeListener(onChange);
   //   Actions.getTipoFromDb();
   // });
 
-  const onChange = () => {
-    const dataFromStore = Store.getItemData();
+  const onChangeTipoFunc = () => {
+    const dataFromStore = Store.getTiposData();
     setTipos(dataFromStore);
   };
 
