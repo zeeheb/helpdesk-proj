@@ -151,11 +151,8 @@ export default function MoveChamadoDialog(props) {
             contato={contato}
             onChangeContato={handleChangeContato}
           ></SelectContato>
+          <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
         </DialogContent>
-        {/* <SelectStatus>
-            status={status}
-            onChangeStatus={handleChangeStatus}>
-          </SelectStatus> */}
         <DialogActions>
           <Button variant='outlined' onClick={handleClose} color='black'>
             Cancelar

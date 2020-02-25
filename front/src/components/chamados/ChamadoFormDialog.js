@@ -51,12 +51,19 @@ export default function ChamadoFormDialog() {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!contato || !descricao || !criticidade || !assunto || !tipo) {
+    if (
+      !contato ||
+      !descricao ||
+      !criticidade ||
+      !assunto ||
+      !tipo ||
+      !status
+    ) {
       Actions.getChamadosFromDb();
       return alert('sem codigo ou descricao');
     }
 
-    const data = { tipo, contato, criticidade, assunto, descricao };
+    const data = { tipo, contato, criticidade, assunto, descricao, status };
     Actions.saveChamadoToDb(data);
     setOpen(false);
   };

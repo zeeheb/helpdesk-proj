@@ -12,16 +12,12 @@ export default function SelectTipo(props) {
   React.useEffect(() => {
     Store.addChangeListener(onChangeTipoFunc);
     Actions.getTiposFromDb();
-    // Store.removeChangeListener(onChange);
+    // Store.removeChangeListener(onChangeTipoFunc);
   }, []);
-  // React.useEffect(() => {
-  //   Store.addChangeListener(onChange);
-  //   Actions.getTipoFromDb();
-  // });
 
   const onChangeTipoFunc = () => {
     const dataFromStore = Store.getTiposData();
-    setTipos(dataFromStore);
+    setTipos(dataFromStore || []);
   };
 
   const handleChange = event => {

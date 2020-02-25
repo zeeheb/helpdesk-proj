@@ -12,12 +12,15 @@ export default function SelectStatus(props) {
   React.useEffect(() => {
     Store.addChangeListener(onChangeStatusFunc);
     Actions.getStatusesFromDb();
-    // Store.removeChangeListener(onChange);
+
+    return () => {
+      Store.removeChangeListener(onChangeStatusFunc);
+    };
   }, []);
 
   const onChangeStatusFunc = () => {
     const dataFromStore = Store.getStatusesData();
-    setStatuses(dataFromStore);
+    setStatuses(dataFromStore || []);
   };
 
   const handleChange = event => {

@@ -37,9 +37,9 @@ class Store extends BaseStore {
     this.chamadoItemData = data; /////////////////
   }
 
-  getContatoItemData() {
-    return this.chamadoItemData;
-  }
+  // getContatoItemData() {
+  //   return this.chamadoItemData;
+  // }
 
   setTiposData(data) {
     this.tiposData = data; ///////////////
