@@ -24,6 +24,10 @@ const ChamadoSchema = new Schema({
 
   status: {
     type: String
+  },
+
+  exec: {
+    type: String
   }
 
   // anexos: {

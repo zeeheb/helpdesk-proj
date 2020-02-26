@@ -35,11 +35,11 @@ export default function MoveChamadoDialog(props) {
   //   })
 
   const [open, setOpen] = React.useState(false);
-  const [tipo] = React.useState(props.data.tipo);
+  // const [tipo] = React.useState(props.data.tipo);
   //   const [contato] = React.useState(props.data.contato);
-  const [criticidade] = React.useState(props.data.criticidade);
-  const [assunto] = React.useState(props.data.assunto);
-  const [descricao] = React.useState(props.data.descricao);
+  // const [criticidade] = React.useState(props.data.criticidade);
+  // const [assunto] = React.useState(props.data.assunto);
+  // const [descricao] = React.useState(props.data.descricao);
   const [contato, setContato] = React.useState(props.data.chamado);
   const [status, setStatus] = React.useState(props.data.chamado);
 

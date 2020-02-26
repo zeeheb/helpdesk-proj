@@ -8,13 +8,14 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
-import SelectStatus from './SelectStatus';
+// import SelectStatus from './SelectStatus';
 // import Store from '../../stores/Store';
 
-export default function ChamadoFormDialog() {
+export default function ChamadoFormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [tipo, setTipo] = React.useState('');
-  const [status, setStatus] = React.useState('');
+  // const [execs] = React.useState(props.execs);
+  // const [exec, setExec] = React.useState('');
   const [contato, setContato] = React.useState('');
   const [criticidade, setCriticidade] = React.useState('');
   const [assunto, setAssunto] = React.useState('');
@@ -29,8 +30,8 @@ export default function ChamadoFormDialog() {
     setOpen(false);
   };
 
-  // const changeTipo = e => {
-  //   setTipo(e.target.value);
+  // const changeExec = e => {
+  //   setExec(e.target.value);
   // };
 
   const changeContato = e => {
@@ -51,19 +52,12 @@ export default function ChamadoFormDialog() {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (
-      !contato ||
-      !descricao ||
-      !criticidade ||
-      !assunto ||
-      !tipo ||
-      !status
-    ) {
+    if (!contato || !descricao || !criticidade || !assunto || !tipo) {
       Actions.getChamadosFromDb();
       return alert('sem codigo ou descricao');
     }
 
-    const data = { tipo, contato, criticidade, assunto, descricao, status };
+    const data = { tipo, contato, criticidade, assunto, descricao };
     Actions.saveChamadoToDb(data);
     setOpen(false);
   };
@@ -72,9 +66,9 @@ export default function ChamadoFormDialog() {
     setTipo(value);
   };
 
-  const handleChangeStatus = value => {
-    setStatus(value);
-  };
+  // const handleChangeStatus = value => {
+  //   setStatus(value);
+  // };
 
   return (
     <div>
@@ -97,7 +91,16 @@ export default function ChamadoFormDialog() {
         <DialogTitle id='form-dialog-title'>Novo chamado!</DialogTitle>
         <DialogContent>
           <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
-          <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
+          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
+          {/* <TextField
+            margin='dense'
+            id='name'
+            label='Execs'
+            type='text'
+            fullWidth
+            onChange={changeExec}
+          ></TextField> */}
+
           <TextField
             margin='dense'
             id='name'

@@ -11,7 +11,7 @@ class Chamados extends Component {
     super(props);
     this.state = {
       chamados: []
-      // contatos: ['admin']
+      // execs: ['admin', 'user']
     };
   }
 
@@ -44,7 +44,7 @@ class Chamados extends Component {
   render() {
     return (
       <div>
-        <AddChamado> </AddChamado>
+        <AddChamado execs={this.state.execs}> </AddChamado>
 
         <TableRow
           style={{

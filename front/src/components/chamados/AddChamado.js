@@ -37,7 +37,7 @@ class AddChamado extends Component {
   render() {
     return (
       <div>
-        <ChamadoFormDialog></ChamadoFormDialog>
+        <ChamadoFormDialog execs={this.props.execs}></ChamadoFormDialog>
       </div>
     );
   }

@@ -14,6 +14,7 @@ class Store extends BaseStore {
     this.statusesData = null;
     this.chamadosData = null;
     this.chamadoItemData = null;
+    this.execsData = null;
   }
 
   setData(data) {
@@ -26,6 +27,10 @@ class Store extends BaseStore {
 
   setItemData(data) {
     this.itemData = data;
+  }
+
+  setUsersData(data) {
+    this.execsData = data;
   }
 
   setChamadosData(data) {
@@ -89,8 +94,16 @@ class Store extends BaseStore {
     return this.tipoItemData;
   }
 
+  getExecsData() {
+    return this.execsData;
+  }
+
   registerToActions(action) {
     switch (action.type) {
+      case ActionTypes.GET_EXECS_FROM_DB:
+        this.setExecsData(action.data);
+        this.emitChange();
+        break;
       case ActionTypes.GET_CHAMADOS_FROM_DB:
         this.setChamadosData(action.data);
         this.emitChange();

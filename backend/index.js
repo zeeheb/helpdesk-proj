@@ -28,7 +28,8 @@ app.post('/chamado', (req, res) => {
     criticidade: req.body.criticidade,
     assunto: req.body.assunto,
     descricao: req.body.descricao,
-    status: req.body.status
+    status: req.body.status,
+    exec: req.body.exec
     // anexos: req.body.anexos
   });
 
@@ -126,6 +127,26 @@ app.put('/tipo/:_id', async (req, res) => {
     { new: true }
   );
   res.send('Editado com sucesso');
+});
+
+//  GET POST - EXEC
+
+const Exec = require('./models/Exec');
+
+app.post('/exec', (req, res) => {
+  //   console.log(req);
+  console.log(req.body);
+
+  const newExec = new Exec({
+    user: req.body.user
+  });
+
+  newExec.save().then(() => res.send('Exec salvo com sucesso!!!!!!'));
+});
+
+app.get('/exec', async (req, res) => {
+  const execs = await Exec.find({});
+  res.send(execs);
 });
 
 // ========== SPECS

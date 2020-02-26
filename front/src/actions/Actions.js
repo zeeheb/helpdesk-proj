@@ -169,6 +169,17 @@ class Actions {
       })
       .catch(err => console.log(err));
   }
+
+  // GET - EXECS
+
+  getExecsFromDb() {
+    axios
+      .get('http://localhost:3001/exec/')
+      .then(res => {
+        dispatch(ActionTypes.GET_EXECS_FROM_DB, res);
+      })
+      .catch(err => console.log(err));
+  }
 }
 
 export default new Actions();
