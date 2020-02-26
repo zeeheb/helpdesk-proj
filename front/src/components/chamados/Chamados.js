@@ -12,20 +12,21 @@ class Chamados extends Component {
     super(props);
     this.state = {
       chamados: []
-      // execs: ['admin', 'user']
+
+      // exec: ''
     };
   }
 
   componentDidMount() {
-    Store.addChangeListener(this.onChange);
+    Store.addChangeListener(this.onChangeFunc);
     Actions.getChamadosFromDb();
   }
 
   componentWillUnmount() {
-    Store.removeChangeListener(this.onChange);
+    Store.removeChangeListener(this.onChangeFunc);
   }
 
-  onChange = () => {
+  onChangeFunc = () => {
     const dataFromStore = Store.getChamadosData();
     this.setState({ chamados: dataFromStore });
   };
@@ -42,15 +43,35 @@ class Chamados extends Component {
     this.setState({ showError: false });
   };
 
+  handleChangeExec = value => {
+    // this.setState({ exec: value });
+    // Actions.getChamadosFilterFromDb(value);
+    // const dataFromStoreFilter = Store.getChamadosFilterData();
+    // this.setState({ chamados: dataFromStoreFilter });
+
+    this.setState({ exec: value });
+    // Actions.getChamadosFilterFromDb(value);
+    const dataFromStore = Store.getChamadosData();
+    let dataFiltered = [];
+    dataFromStore.forEach(dataFromStore => {
+      if (dataFromStore.exec === value) {
+        // REVISARRRRRRRRRRRRRR
+        dataFiltered = [...dataFromStore];
+      }
+    });
+    this.setState({ chamados: dataFiltered });
+  };
+
   render() {
     return (
       <div>
         <div style={divStyle}>
           <div style={{ flex: 2 }}>
-            <SelectExec></SelectExec>
+            {/* <SelectExec></SelectExec> */}
+            <SelectExec onChangeExec={this.handleChangeExec}></SelectExec>
           </div>
           <div style={{ flex: 4 }}></div>
-          <div style={{ flex: 2, marginTop: '15px' }}>
+          <div style={{ flex: 5, marginTop: '15px' }}>
             <AddChamado> </AddChamado>
           </div>
           <div style={{ flex: 6 }}> </div>
@@ -68,6 +89,9 @@ class Chamados extends Component {
             <Typography variant='h6' align='left'>
               Tipo
             </Typography>
+          </TableCell>
+          <TableCell style={{ flex: 1 }}>
+            <Typography variant='h6'>Executante</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
             <Typography variant='h6'>Contato</Typography>
@@ -92,6 +116,7 @@ class Chamados extends Component {
 
         {this.state.chamados.map(chamado => (
           <ChamadoItem
+            // exec={this.state.exec}
             onDelete={this.onDelete}
             delChamado={this.delChamado}
             chamado={chamado}

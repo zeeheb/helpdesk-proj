@@ -2,17 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import Chamados from '../chamados/Chamados';
-import SelectExec from '../chamados/SelectExec';
 
 function Chamado() {
-  // const users = {
-  //   execs: [{ user: 'admin' }, { user: 'user1' }]
-  // };
-  // const [exec, setExec] = React.useState(0);
-  // const changeExec = e => {
-  //   setExec(e.target.value);
-  // };
-
   return (
     <div>
       <header style={headerStyle}>
@@ -23,8 +14,6 @@ function Chamado() {
         <Link style={linkStyle} to='/status'>
           <Typography>Status</Typography>
         </Link>
-
-        {/* <SelectExec></SelectExec> */}
       </header>
 
       <Chamados></Chamados>

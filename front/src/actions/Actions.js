@@ -150,6 +150,15 @@ class Actions {
       .catch(err => console.log(err));
   }
 
+  getChamadosFilterFromDb(value) {
+    axios
+      .get(`http://localhost:3001/chamado/filter/${value}`)
+      .then(res => {
+        dispatch(ActionTypes.GET_CHAMADOS_FILTER_FROM_DB, res);
+      })
+      .catch(err => console.log(err));
+  }
+
   deleteChamadoFromDb(_id, callback) {
     axios
       .delete(`http://localhost:3001/chamado?_id=${_id}`)

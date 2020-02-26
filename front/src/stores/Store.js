@@ -15,6 +15,7 @@ class Store extends BaseStore {
     this.chamadosData = null;
     this.chamadoItemData = null;
     this.execsData = null;
+    this.chamadosFilterData = null;
   }
 
   setData(data) {
@@ -27,6 +28,10 @@ class Store extends BaseStore {
 
   setItemData(data) {
     this.itemData = data;
+  }
+
+  setChamadosFilterData(data) {
+    this.chamadosFilterData = data;
   }
 
   setExecsData(data) {
@@ -98,8 +103,16 @@ class Store extends BaseStore {
     return this.execsData;
   }
 
+  getChamadosFilterData() {
+    return this.chamadosFilterData;
+  }
+
   registerToActions(action) {
     switch (action.type) {
+      case ActionTypes.GET_CHAMADOS_FILTER_FROM_DB:
+        this.setChamadosFilterData(action.data);
+        this.emitChange();
+        break;
       case ActionTypes.GET_EXECS_FROM_DB:
         this.setExecsData(action.data);
         this.emitChange();

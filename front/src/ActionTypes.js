@@ -9,7 +9,7 @@ export default keyMirror({
   GET_TIPOS_FROM_DB: null,
   GET_STATUSES_FROM_DB: null,
   GET_CHAMADOS_FROM_DB: null,
-  GET_CHAMADO_ITEM_FROM_DB: null,
+  GET_CHAMADOS_FILTER_FROM_DB: null,
   // GET_EXEC_FROM_DB: null,
   GET_EXECS_FROM_DB: null
 });

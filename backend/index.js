@@ -41,6 +41,11 @@ app.get('/chamado', async (req, res) => {
   res.send(chamados);
 });
 
+app.get('/chamado/filter/:value', async (req, res) => {
+  const chamados = await Chamado.find({ exec: req.params.exec });
+  res.send(chamados);
+});
+
 app.delete('/chamado', async (req, res) => {
   const params = req.query;
 
