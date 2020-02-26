@@ -29,7 +29,7 @@ class Store extends BaseStore {
     this.itemData = data;
   }
 
-  setUsersData(data) {
+  setExecsData(data) {
     this.execsData = data;
   }
 

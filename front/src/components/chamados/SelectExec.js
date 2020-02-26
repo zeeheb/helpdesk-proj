@@ -7,37 +7,40 @@ import { MenuItem } from '@material-ui/core';
 
 export default function SelectExec(props) {
   const [execValor, setExecValor] = React.useState('');
-  const [execs, setExecs] = React.useState(props.execs);
+  const [execs, setExecs] = React.useState([]);
 
   React.useEffect(() => {
-    Store.addChangeListener(onChangeTipoFunc);
-    Actions.getTiposFromDb();
-    // Store.removeChangeListener(onChangeTipoFunc);
+    Store.addChangeListener(onChangeExecFunc);
+    Actions.getExecsFromDb();
+
+    return () => {
+      Store.removeChangeListener(onChangeExecFunc);
+    };
   }, []);
 
-  const onChangeTipoFunc = () => {
-    const dataFromStore = Store.getTiposData();
-    setTipos(dataFromStore || []);
+  const onChangeExecFunc = () => {
+    const dataFromStore = Store.getExecsData();
+    setExecs(dataFromStore || []);
   };
 
   const handleChange = event => {
-    props.onChangeTipo(event.target.value);
-    setTipoValor(event.target.value);
+    props.onChangeExec(event.target.value);
+    setExecValor(event.target.value);
   };
 
   return (
     <div style={{ marginTop: '15px' }}>
-      <InputLabel>Tipo</InputLabel>
+      <InputLabel>Executante</InputLabel>
       <Select
         fullWidth
         labelId='demo-simple-select-label'
         id='demo-simple-select'
-        value={tipoValor}
+        value={execValor}
         onChange={handleChange}
         variant='standard'
       >
-        {tipos.map(tipo => (
-          <MenuItem value={tipo.descricao}>{tipo.descricao}</MenuItem>
+        {execs.map(exec => (
+          <MenuItem value={exec.user}>{exec.user}</MenuItem>
         ))}
       </Select>
     </div>

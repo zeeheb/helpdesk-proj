@@ -16,7 +16,7 @@ import {
   // InputLabel
 } from '@material-ui/core';
 // import Store from '../../stores/Store';
-import SelectContato from './SelectContato';
+import SelectExec from './SelectExec';
 
 export default function MoveChamadoDialog(props) {
   const typoStyle = {
@@ -40,7 +40,7 @@ export default function MoveChamadoDialog(props) {
   // const [criticidade] = React.useState(props.data.criticidade);
   // const [assunto] = React.useState(props.data.assunto);
   // const [descricao] = React.useState(props.data.descricao);
-  const [contato, setContato] = React.useState(props.data.chamado);
+  const [exec, setExec] = React.useState(props.data.chamado);
   const [status, setStatus] = React.useState(props.data.chamado);
 
   const handleClickOpen = () => {
@@ -58,17 +58,17 @@ export default function MoveChamadoDialog(props) {
     setStatus(value);
   };
 
-  const handleChangeContato = value => {
-    setContato(value);
+  const handleChangeExec = value => {
+    setExec(value);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!status) {
+    if (!status || !exec) {
       return alert('sem status');
     }
 
-    const data = { status };
+    const data = { status, exec };
     Actions.editChamadoFromDb(data, props.data._id);
     setOpen(false);
   };
@@ -147,10 +147,7 @@ export default function MoveChamadoDialog(props) {
           <Typography variant='h5' style={{ marginTop: '20px' }}>
             Novas informações
           </Typography>
-          <SelectContato
-            contato={contato}
-            onChangeContato={handleChangeContato}
-          ></SelectContato>
+          <SelectExec onChangeExec={handleChangeExec}></SelectExec>
           <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
         </DialogContent>
         <DialogActions>

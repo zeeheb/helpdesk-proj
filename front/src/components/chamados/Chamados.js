@@ -5,6 +5,7 @@ import AddChamado from './AddChamado';
 import ChamadoItem from './ChamadoItem';
 import { TableRow, TableCell, Typography } from '@material-ui/core';
 import Snackbar from './Snackbar';
+import SelectExec from './SelectExec';
 
 class Chamados extends Component {
   constructor(props) {
@@ -44,7 +45,17 @@ class Chamados extends Component {
   render() {
     return (
       <div>
-        <AddChamado execs={this.state.execs}> </AddChamado>
+        <div style={divStyle}>
+          <div style={{ flex: 2 }}>
+            <SelectExec></SelectExec>
+          </div>
+          <div style={{ flex: 4 }}></div>
+          <div style={{ flex: 2, marginTop: '15px' }}>
+            <AddChamado> </AddChamado>
+          </div>
+          <div style={{ flex: 6 }}> </div>
+        </div>
+        <div style={{ padding: '10px' }}></div>
 
         <TableRow
           style={{
@@ -90,5 +101,13 @@ class Chamados extends Component {
     );
   }
 }
+
+const divStyle = {
+  display: 'flex',
+  width: '100%'
+  // margin: '0 auto',
+  // background: '#333',
+  // color: '#fff'
+};
 
 export default Chamados;

@@ -6,7 +6,7 @@ import Actions from '../../actions/Actions';
 import { MenuItem } from '@material-ui/core';
 
 export default function SelectStatus(props) {
-  const [tipoStatus, setStatusValor] = React.useState('');
+  const [statusValor, setStatusValor] = React.useState('');
   const [statuses, setStatuses] = React.useState([]);
 
   React.useEffect(() => {
@@ -35,7 +35,7 @@ export default function SelectStatus(props) {
         fullWidth
         labelId='demo-simple-select-label'
         id='demo-simple-select'
-        value={tipoStatus}
+        value={statusValor}
         onChange={handleChange}
         variant='standard'
       >
