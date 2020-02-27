@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
+// import { Typography } from '@material-ui/core';
 // import SelectStatus from './SelectStatus';
 // import Store from '../../stores/Store';
 
@@ -90,16 +91,21 @@ export default function ChamadoFormDialog(props) {
       >
         <DialogTitle id='form-dialog-title'>Novo chamado!</DialogTitle>
         <DialogContent>
-          <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
-          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
-          {/* <TextField
+          {/* <Typography variant='h6'>Chamado para: {props.exec}</Typography> */}
+
+          <TextField
             margin='dense'
             id='name'
-            label='Execs'
+            label='Executante'
             type='text'
             fullWidth
-            onChange={changeExec}
-          ></TextField> */}
+            value={props.exec}
+            helperText='Definido na tela de chamados'
+            // onChange={changeContato}
+          />
+          <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
+
+          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
 
           <TextField
             margin='dense'

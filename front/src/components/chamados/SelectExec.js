@@ -6,7 +6,7 @@ import Actions from '../../actions/Actions';
 import { MenuItem } from '@material-ui/core';
 
 export default function SelectExec(props) {
-  const [execValor, setExecValor] = React.useState('');
+  const [execValor, setExecValor] = React.useState('admin');
   const [execs, setExecs] = React.useState([]);
 
   React.useEffect(() => {

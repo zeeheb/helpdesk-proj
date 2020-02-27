@@ -11,7 +11,8 @@ class Chamados extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chamados: []
+      chamados: [],
+      exec: 'admin'
 
       // exec: ''
     };
@@ -28,7 +29,7 @@ class Chamados extends Component {
 
   onChangeFunc = () => {
     const dataFromStore = Store.getChamadosData();
-    this.setState({ chamados: dataFromStore });
+    // this.setState({ chamados: dataFromStore }); necessario?
   };
 
   delChamado = (_id, callback) => {
@@ -52,14 +53,18 @@ class Chamados extends Component {
     this.setState({ exec: value });
     // Actions.getChamadosFilterFromDb(value);
     const dataFromStore = Store.getChamadosData();
-    let dataFiltered = [];
-    dataFromStore.forEach(dataFromStore => {
-      if (dataFromStore.exec === value) {
-        // REVISARRRRRRRRRRRRRR
-        dataFiltered = [...dataFromStore];
-      }
-    });
-    this.setState({ chamados: dataFiltered });
+    if (value !== 'admin') {
+      let dataFiltered = [];
+      dataFromStore.forEach(data => {
+        if (data.exec === value) {
+          // REVISAR
+          dataFiltered = [{ ...data }];
+        }
+      });
+      this.setState({ chamados: dataFiltered });
+    } else {
+      this.setState({ chamados: dataFromStore });
+    }
   };
 
   render() {
@@ -72,7 +77,7 @@ class Chamados extends Component {
           </div>
           <div style={{ flex: 4 }}></div>
           <div style={{ flex: 5, marginTop: '15px' }}>
-            <AddChamado> </AddChamado>
+            <AddChamado exec={this.state.exec}> </AddChamado>
           </div>
           <div style={{ flex: 6 }}> </div>
         </div>
@@ -116,7 +121,6 @@ class Chamados extends Component {
 
         {this.state.chamados.map(chamado => (
           <ChamadoItem
-            // exec={this.state.exec}
             onDelete={this.onDelete}
             delChamado={this.delChamado}
             chamado={chamado}
