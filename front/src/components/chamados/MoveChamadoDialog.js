@@ -12,7 +12,8 @@ import {
   TableRow,
   Table,
   Typography,
-  TableCell
+  TableCell,
+  TextField
   // InputLabel
 } from '@material-ui/core';
 // import Store from '../../stores/Store';
@@ -30,7 +31,7 @@ export default function MoveChamadoDialog(props) {
   };
 
   const [open, setOpen] = React.useState(false);
-
+  const [descricao, setDescricao] = React.useState('');
   const [exec, setExec] = React.useState(props.data.chamado);
   const [status, setStatus] = React.useState('');
 
@@ -40,7 +41,7 @@ export default function MoveChamadoDialog(props) {
   };
 
   const handleClose = () => {
-    Actions.getChamadosFromDb();
+    // Actions.getChamadosFromDb();
     setOpen(false);
   };
 
@@ -53,14 +54,18 @@ export default function MoveChamadoDialog(props) {
     setExec(value);
   };
 
+  const changeDescricao = e => {
+    setDescricao(e.target.value);
+  };
+
   const onSubmit = e => {
     e.preventDefault();
-    if (!status || !exec) {
-      return alert('sem status');
+    if (!status || !exec || !descricao) {
+      return alert('Falta informação');
     }
 
     if (exec !== props.exec) {
-      const data = { status, exec };
+      const data = { status, exec, descricao };
       Actions.editChamadoFromDb(data, props.data._id);
       setOpen(false);
     } else return alert('Escolha outro usuário');
@@ -154,6 +159,16 @@ export default function MoveChamadoDialog(props) {
             onChangeExec={handleChangeExec}
           ></SelectExec>
           <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
+
+          <TextField
+            autoFocus
+            margin='dense'
+            id='name'
+            label='Descrição'
+            type='text'
+            fullWidth
+            onChange={changeDescricao}
+          />
         </DialogContent>
         <DialogActions>
           <Button variant='outlined' onClick={handleClose} color='black'>

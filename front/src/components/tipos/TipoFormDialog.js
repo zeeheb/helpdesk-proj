@@ -10,8 +10,8 @@ import Actions from '../../actions/Actions';
 
 export default function TipoFormDialog() {
   const [open, setOpen] = React.useState(false);
-  const [codigo, setCodigo] = React.useState(false);
-  const [descricao, setDescricao] = React.useState(false);
+  const [codigo, setCodigo] = React.useState('');
+  const [descricao, setDescricao] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);

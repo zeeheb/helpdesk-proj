@@ -54,6 +54,19 @@ app.delete('/chamado', async (req, res) => {
   res.send('Apagado com sucesso');
 });
 
+app.put('/chamado/:_id', async (req, res) => {
+  const params = req.params;
+  const body = req.body;
+  // const todo = await Todo.find({id: params})
+  await Chamado.findOneAndUpdate(
+    { _id: params._id },
+    { descricao: body.descricao, exec: req.body.exec, status: req.body.status },
+    { new: true }
+  );
+
+  res.send('Editado com sucesso');
+});
+
 // ================= STATUS =================
 const Status = require('./models/Status');
 
