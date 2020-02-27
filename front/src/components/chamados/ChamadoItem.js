@@ -50,6 +50,7 @@ class ChamadoItem extends Component {
 
 const rowStyle = {
   display: 'flex'
+  // overflow: 'hidden'
   // flex: 1
 };
 

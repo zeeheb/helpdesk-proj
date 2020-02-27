@@ -43,9 +43,9 @@ export default function TipoFormDialog() {
   return (
     <div>
       <Button
+        fullWidth
         variant='outlined'
         color='Black'
-        fullWidth
         onClick={handleClickOpen}
         className='btn'
         type='submit'

@@ -29,19 +29,10 @@ export default function MoveChamadoDialog(props) {
     display: 'flex'
   };
 
-  //   React.useEffect(() => {
-  //       Store.addChangeListener(onChange);
-  //       Actions.get
-  //   })
-
   const [open, setOpen] = React.useState(false);
-  // const [tipo] = React.useState(props.data.tipo);
-  //   const [contato] = React.useState(props.data.contato);
-  // const [criticidade] = React.useState(props.data.criticidade);
-  // const [assunto] = React.useState(props.data.assunto);
-  // const [descricao] = React.useState(props.data.descricao);
+
   const [exec, setExec] = React.useState(props.data.chamado);
-  const [status, setStatus] = React.useState(props.data.chamado);
+  const [status, setStatus] = React.useState('');
 
   const handleClickOpen = () => {
     Actions.getChamadosFromDb();
@@ -68,9 +59,11 @@ export default function MoveChamadoDialog(props) {
       return alert('sem status');
     }
 
-    const data = { status, exec };
-    Actions.editChamadoFromDb(data, props.data._id);
-    setOpen(false);
+    if (exec !== props.exec) {
+      const data = { status, exec };
+      Actions.editChamadoFromDb(data, props.data._id);
+      setOpen(false);
+    } else return alert('Escolha outro usuário');
   };
 
   return (
@@ -95,6 +88,15 @@ export default function MoveChamadoDialog(props) {
         </DialogTitle>
         <DialogContent>
           <Table size='small'>
+            <TableRow style={rowStyle}>
+              <TableCell style={{ flex: 1 }}>
+                <Typography variant='h6'>Usuário: </Typography>
+              </TableCell>
+              <TableCell style={{ flex: 3 }}>
+                <Typography style={typoStyle}>{props.data.exec} </Typography>
+              </TableCell>
+            </TableRow>
+
             <TableRow style={rowStyle}>
               <TableCell style={{ flex: 1 }}>
                 <Typography variant='h6'>Tipo: </Typography>
@@ -147,7 +149,10 @@ export default function MoveChamadoDialog(props) {
           <Typography variant='h5' style={{ marginTop: '20px' }}>
             Novas informações
           </Typography>
-          <SelectExec onChangeExec={handleChangeExec}></SelectExec>
+          <SelectExec
+            // exec={props.exec}
+            onChangeExec={handleChangeExec}
+          ></SelectExec>
           <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
         </DialogContent>
         <DialogActions>

@@ -6,6 +6,7 @@ import ChamadoItem from './ChamadoItem';
 import { TableRow, TableCell, Typography } from '@material-ui/core';
 import Snackbar from './Snackbar';
 import SelectExec from './SelectExec';
+import _ from 'lodash';
 
 class Chamados extends Component {
   constructor(props) {
@@ -35,6 +36,9 @@ class Chamados extends Component {
     } else {
       this.setState({ chamados: dataFiltered });
     }
+
+    // const dataFromStore = Store.getChamadosData();
+    // this.setState({ chamados: dataFromStore });
   };
 
   delChamado = (_id, callback) => {
@@ -53,12 +57,12 @@ class Chamados extends Component {
     this.setState({ exec: value });
     // Actions.getChamadosFilterFromDb(value);
     const dataFromStore = Store.getChamadosData();
+    let dataFiltered = [];
     if (value !== 'admin') {
-      let dataFiltered = [];
       dataFromStore.forEach(data => {
         if (data.exec === value) {
           // REVISAR
-          dataFiltered = [{ ...data }];
+          dataFiltered = _.concat(dataFiltered, data);
         }
       });
       Store.setChamadosFilterData(dataFiltered);
@@ -97,7 +101,7 @@ class Chamados extends Component {
             </Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
-            <Typography variant='h6'>Executante</Typography>
+            <Typography variant='h6'>Usuário</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
             <Typography variant='h6'>Contato</Typography>

@@ -28,6 +28,8 @@ const headerStyle = {
   padding: '10px',
   marginBottom: '10px',
   borderRadius: '5px'
+  // width: '50%',
+  // margin: '0 auto'
 };
 
 const linkStyle = {

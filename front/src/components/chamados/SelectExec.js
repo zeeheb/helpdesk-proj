@@ -42,7 +42,7 @@ export default function SelectExec(props) {
 
   return (
     <div style={{ marginTop: '15px' }}>
-      <InputLabel>Executante</InputLabel>
+      <InputLabel>Usuário</InputLabel>
       <Select
         fullWidth
         labelId='demo-simple-select-label'

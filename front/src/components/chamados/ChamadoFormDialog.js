@@ -65,7 +65,8 @@ export default function ChamadoFormDialog(props) {
       criticidade,
       assunto,
       descricao,
-      exec: props.exec
+      exec: props.exec,
+      status: ''
     };
     Actions.saveChamadoToDb(data);
     setOpen(false);
@@ -104,7 +105,7 @@ export default function ChamadoFormDialog(props) {
           <TextField
             margin='dense'
             id='name'
-            label='Executante'
+            label='Usuário'
             type='text'
             fullWidth
             value={props.exec}
