@@ -10,6 +10,7 @@ export default function SelectExec(props) {
   const [execs, setExecs] = React.useState([]);
 
   React.useEffect(() => {
+    // initExec();
     Store.addChangeListener(onChangeExecFunc);
     Actions.getExecsFromDb();
 
@@ -18,9 +19,20 @@ export default function SelectExec(props) {
     };
   }, []);
 
+  // const initExec = () => {
+  //   const dataFromStore = Store.getExecsData();
+  //   if (dataFromStore) {
+  //     handleChange({ target: { value: dataFromStore[0].user } });
+  //     setExecs(dataFromStore || []);
+  //   }
+  // };
+
   const onChangeExecFunc = () => {
     const dataFromStore = Store.getExecsData();
-    setExecs(dataFromStore || []);
+    if (dataFromStore) {
+      // handleChange({ target: { value: dataFromStore[0].user } });
+      setExecs(dataFromStore || []);
+    }
   };
 
   const handleChange = event => {

@@ -21,6 +21,7 @@ export default function ChamadoFormDialog(props) {
   const [criticidade, setCriticidade] = React.useState('');
   const [assunto, setAssunto] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
+  // const [exec] = React.useState(props.exec);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -54,11 +55,18 @@ export default function ChamadoFormDialog(props) {
   const onSubmit = e => {
     e.preventDefault();
     if (!contato || !descricao || !criticidade || !assunto || !tipo) {
-      Actions.getChamadosFromDb();
-      return alert('sem codigo ou descricao');
+      // Actions.getChamadosFromDb();
+      return alert('Informações faltando');
     }
 
-    const data = { tipo, contato, criticidade, assunto, descricao };
+    const data = {
+      tipo,
+      contato,
+      criticidade,
+      assunto,
+      descricao,
+      exec: props.exec
+    };
     Actions.saveChamadoToDb(data);
     setOpen(false);
   };
@@ -101,6 +109,9 @@ export default function ChamadoFormDialog(props) {
             fullWidth
             value={props.exec}
             helperText='Definido na tela de chamados'
+            InputProps={{
+              readOnly: true
+            }}
             // onChange={changeContato}
           />
           <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>

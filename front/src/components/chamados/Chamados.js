@@ -28,8 +28,13 @@ class Chamados extends Component {
   }
 
   onChangeFunc = () => {
-    const dataFromStore = Store.getChamadosData();
-    // this.setState({ chamados: dataFromStore }); necessario?
+    const dataFiltered = Store.getChamadosFilterData();
+    if (!dataFiltered) {
+      const dataFromStore = Store.getChamadosData();
+      this.setState({ chamados: dataFromStore });
+    } else {
+      this.setState({ chamados: dataFiltered });
+    }
   };
 
   delChamado = (_id, callback) => {
@@ -45,11 +50,6 @@ class Chamados extends Component {
   };
 
   handleChangeExec = value => {
-    // this.setState({ exec: value });
-    // Actions.getChamadosFilterFromDb(value);
-    // const dataFromStoreFilter = Store.getChamadosFilterData();
-    // this.setState({ chamados: dataFromStoreFilter });
-
     this.setState({ exec: value });
     // Actions.getChamadosFilterFromDb(value);
     const dataFromStore = Store.getChamadosData();
@@ -61,6 +61,7 @@ class Chamados extends Component {
           dataFiltered = [{ ...data }];
         }
       });
+      Store.setChamadosFilterData(dataFiltered);
       this.setState({ chamados: dataFiltered });
     } else {
       this.setState({ chamados: dataFromStore });
