@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -165,6 +167,34 @@ app.post('/exec', (req, res) => {
 app.get('/exec', async (req, res) => {
   const execs = await Exec.find({});
   res.send(execs);
+});
+
+//
+
+app.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+  const id = req.body.id;
+
+  file.mv(
+    `/home/desenv01/estagio/novoprojeto/front/src/components/chamados/uploads/${id +
+      +'' +
+      file.name}`,
+    err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+
+      res.json({
+        fileName: file.name,
+        filePath: `/uploads/${id + '-' + file.name}`
+      });
+    }
+  );
 });
 
 // ========== SPECS

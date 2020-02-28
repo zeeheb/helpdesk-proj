@@ -13,7 +13,9 @@ class Chamados extends Component {
     super(props);
     this.state = {
       chamados: [],
-      exec: 'admin'
+      exec: 'admin',
+      file: '',
+      filename: ''
 
       // exec: ''
     };

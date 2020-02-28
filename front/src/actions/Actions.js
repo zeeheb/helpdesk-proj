@@ -189,6 +189,21 @@ class Actions {
       })
       .catch(err => console.log(err));
   }
+
+  // POST UPLOAD
+
+  saveUploadToDb = data => {
+    axios
+      .post('http://localhost:3001/upload', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then(res => {
+        alert('salvou upload');
+        // const { filename, filepath } = res.data
+      });
+  };
 }
 
 export default new Actions();

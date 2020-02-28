@@ -8,6 +8,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
+import { Typography } from '@material-ui/core';
+import UploadButton from './UploadButton';
+import FileUpload from './FileUpload';
 // import { Typography } from '@material-ui/core';
 // import SelectStatus from './SelectStatus';
 // import Store from '../../stores/Store';
@@ -21,6 +24,8 @@ export default function ChamadoFormDialog(props) {
   const [criticidade, setCriticidade] = React.useState('');
   const [assunto, setAssunto] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
+  // const [file, setFile] = React.useState('');
+  // const [filename, setFilename] = React.useState('');
   // const [exec] = React.useState(props.exec);
 
   const handleClickOpen = () => {
@@ -75,6 +80,10 @@ export default function ChamadoFormDialog(props) {
   const handleChangeTipo = value => {
     setTipo(value);
   };
+
+  // const handleChangeFile = value => {
+  //   setFile
+  // }
 
   // const handleChangeStatus = value => {
   //   setStatus(value);
@@ -151,6 +160,10 @@ export default function ChamadoFormDialog(props) {
             fullWidth
             onChange={changeDescricao}
           />
+
+          <FileUpload></FileUpload>
+
+          {/* <UploadButton></UploadButton> */}
         </DialogContent>
         <DialogActions>
           <Button variant='outlined' onClick={handleClose} color='black'>
