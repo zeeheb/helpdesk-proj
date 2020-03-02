@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+const uuid = require('uuid');
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.post('/chamado', (req, res) => {
   //   console.log(req);
   console.log(req.body);
 
+  const url = req.protocol + '://' + req.get('host');
+  const str = `${url}/${req.body.anexoNome}`;
+
   const newChamado = new Chamado({
     tipo: req.body.tipo,
     contato: req.body.contato,
@@ -31,7 +35,10 @@ app.post('/chamado', (req, res) => {
     assunto: req.body.assunto,
     descricao: req.body.descricao,
     status: req.body.status,
-    exec: req.body.exec
+    exec: req.body.exec,
+    id: req.body.id,
+    anexo: str
+
     // anexos: req.body.anexos
   });
 
@@ -170,19 +177,25 @@ app.get('/exec', async (req, res) => {
 });
 
 //
+const Upload = require('./models/Upload');
 
 app.post('/upload', (req, res) => {
   if (req.files === null) {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
-
+  // const id = uuid.v4();
   const file = req.files.file;
   const id = req.body.id;
+  const str = `${id}-${file.name}`;
+
+  const newUpload = new Upload({
+    img: file.buffer
+  });
+
+  // newUpload.save().then(() => res.send('Upload salvo'));
 
   file.mv(
-    `/home/desenv01/estagio/novoprojeto/front/src/components/chamados/uploads/${id +
-      +'' +
-      file.name}`,
+    `/home/desenv01/estagio/novoprojeto/front/src/components/chamados/uploads/${str}`,
     err => {
       if (err) {
         console.error(err);
@@ -191,7 +204,7 @@ app.post('/upload', (req, res) => {
 
       res.json({
         fileName: file.name,
-        filePath: `/uploads/${id + '-' + file.name}`
+        filePath: `/uploads/${str}`
       });
     }
   );

@@ -8,9 +8,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
-import { Typography } from '@material-ui/core';
-import UploadButton from './UploadButton';
+import axios from 'axios';
+
+// import { Typography } from '@material-ui/core';
+// import UploadButton from './UploadButton';
 import FileUpload from './FileUpload';
+import uuid from 'uuid';
+// import uuid from 'uuid';
 // import { Typography } from '@material-ui/core';
 // import SelectStatus from './SelectStatus';
 // import Store from '../../stores/Store';
@@ -24,7 +28,9 @@ export default function ChamadoFormDialog(props) {
   const [criticidade, setCriticidade] = React.useState('');
   const [assunto, setAssunto] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
-  // const [file, setFile] = React.useState('');
+  const [file, setFile] = React.useState('');
+  const [filename, setFilename] = React.useState('');
+  const [uploadedFile, setUploadedFile] = React.useState('');
   // const [filename, setFilename] = React.useState('');
   // const [exec] = React.useState(props.exec);
 
@@ -59,10 +65,13 @@ export default function ChamadoFormDialog(props) {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!contato || !descricao || !criticidade || !assunto || !tipo) {
+    if (!contato || !descricao || !criticidade || !assunto || !tipo || !file) {
       // Actions.getChamadosFromDb();
       return alert('Informações faltando');
     }
+
+    const myid = uuid.v4();
+    const anexoNome = `${myid}-${file.name}`;
 
     const data = {
       tipo,
@@ -71,14 +80,40 @@ export default function ChamadoFormDialog(props) {
       assunto,
       descricao,
       exec: props.exec,
-      status: ''
+      status: '',
+      id: myid,
+      anexoNome
     };
     Actions.saveChamadoToDb(data);
+    saveFile(myid);
     setOpen(false);
   };
 
   const handleChangeTipo = value => {
     setTipo(value);
+  };
+
+  const handleUpload = value => {
+    setFile(value);
+    setFilename(value.name);
+  };
+
+  const saveFile = async id => {
+    const data = new FormData();
+    data.append('file', file);
+    data.append('id', id);
+    try {
+      const res = await axios.post('http://localhost:3001/upload', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      const { filename, filePath } = res.data;
+      setUploadedFile({ filename, filePath });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // const handleChangeFile = value => {
@@ -125,7 +160,6 @@ export default function ChamadoFormDialog(props) {
             // onChange={changeContato}
           />
           <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
-
           {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
 
           <TextField
@@ -161,7 +195,7 @@ export default function ChamadoFormDialog(props) {
             onChange={changeDescricao}
           />
 
-          <FileUpload></FileUpload>
+          <FileUpload onUpload={handleUpload} />
 
           {/* <UploadButton></UploadButton> */}
         </DialogContent>

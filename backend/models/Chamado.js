@@ -32,7 +32,17 @@ const ChamadoSchema = new Schema({
 
   status: {
     type: String
+  },
+
+  id: {
+    type: String
+  },
+
+  anexo: {
+    type: String
   }
+
+  // id: mongoose.Schema.Types.ObjectId
 
   // anexos: {
   //   type: String
