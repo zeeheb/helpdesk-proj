@@ -26,7 +26,11 @@ app.post('/chamado', (req, res) => {
   console.log(req.body);
 
   const url = req.protocol + '://' + req.get('host');
-  const str = `${url}/${req.body.anexoNome}`;
+
+  // const str = `${url}/backend/uploads/${req.body.anexoNome}`;
+  const str = `/home/desenv01/estagio/novoprojeto/backend/uploads/${req.body.anexoNome}`;
+
+  // const str = `/home/desenv01/estagio/novoprojeto/front/src/components/chamados/uploads/${req.body.anexoNome}`;
 
   const newChamado = new Chamado({
     tipo: req.body.tipo,
@@ -37,7 +41,8 @@ app.post('/chamado', (req, res) => {
     status: req.body.status,
     exec: req.body.exec,
     id: req.body.id,
-    anexo: str
+    anexo: str,
+    nomeArq: req.body.nomeArq
 
     // anexos: req.body.anexos
   });
@@ -194,20 +199,17 @@ app.post('/upload', (req, res) => {
 
   // newUpload.save().then(() => res.send('Upload salvo'));
 
-  file.mv(
-    `/home/desenv01/estagio/novoprojeto/front/src/components/chamados/uploads/${str}`,
-    err => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send(err);
-      }
-
-      res.json({
-        fileName: file.name,
-        filePath: `/uploads/${str}`
-      });
+  file.mv(`${__dirname}/uploads/${str}`, err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
     }
-  );
+
+    res.json({
+      fileName: file.name,
+      filePath: `/uploads/${str}`
+    });
+  });
 });
 
 // ========== SPECS

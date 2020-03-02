@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import { TableRow, TableCell, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoveChamadoDialog from './MoveChamadoDialog';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import FileSaver from 'file-saver';
 
 class ChamadoItem extends Component {
   onClickDel = () => {
     const _id = this.props.chamado._id;
     this.props.delChamado(_id, this.props.onDelete);
+  };
+
+  onDownload = () => {
+    // const _id = this.props.chamado._id;
+    FileSaver.saveAs(
+      `${this.props.chamado.anexo}`,
+      `${this.props.chamado.nomeArq}`
+    );
   };
 
   render() {
@@ -33,7 +43,12 @@ class ChamadoItem extends Component {
             <Typography>{this.props.chamado.descricao}</Typography>
           </TableCell>
 
-          <TableCell style={{ flex: 1.5 }}>
+          <TableCell style={{ flex: 0 }}>
+            <Button style={{ float: 'right' }} onClick={this.onDownload}>
+              <GetAppIcon></GetAppIcon>
+            </Button>
+          </TableCell>
+          <TableCell style={{ flex: 0 }}>
             <MoveChamadoDialog data={this.props.chamado}></MoveChamadoDialog>
           </TableCell>
           <TableCell style={{ flex: 0 }}>

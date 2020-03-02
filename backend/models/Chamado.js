@@ -40,6 +40,10 @@ const ChamadoSchema = new Schema({
 
   anexo: {
     type: String
+  },
+
+  nomeArq: {
+    type: String
   }
 
   // id: mongoose.Schema.Types.ObjectId

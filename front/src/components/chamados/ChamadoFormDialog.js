@@ -82,7 +82,8 @@ export default function ChamadoFormDialog(props) {
       exec: props.exec,
       status: '',
       id: myid,
-      anexoNome
+      anexoNome,
+      nomeArq: file.name
     };
     Actions.saveChamadoToDb(data);
     saveFile(myid);
