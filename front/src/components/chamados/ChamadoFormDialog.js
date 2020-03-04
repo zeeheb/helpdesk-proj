@@ -31,6 +31,7 @@ export default function ChamadoFormDialog(props) {
   const [file, setFile] = React.useState('');
   const [filename, setFilename] = React.useState('');
   const [uploadedFile, setUploadedFile] = React.useState('');
+  const [fileURL, setfileURL] = React.useState('');
   // const [filename, setFilename] = React.useState('');
   // const [exec] = React.useState(props.exec);
 
@@ -84,9 +85,10 @@ export default function ChamadoFormDialog(props) {
       id: myid,
       anexoNome,
       nomeArq: file.name
+      // fileURL
     };
-    Actions.saveChamadoToDb(data);
     saveFile(myid);
+    Actions.saveChamadoToDb(data);
     setOpen(false);
   };
 
@@ -110,6 +112,11 @@ export default function ChamadoFormDialog(props) {
         }
       });
 
+      // setfileURL(URL.createObjectURL(new Blob([res])), () =>
+      //   window.open(fileURL)
+      // );
+      // window.open(fileURL);
+      // const fileStream = res;
       const { filename, filePath } = res.data;
       setUploadedFile({ filename, filePath });
     } catch (err) {

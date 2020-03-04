@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const uuid = require('uuid');
+// const multer = require('multer');
+const fs = require('fs');
 
 const app = express();
 
@@ -19,7 +21,39 @@ mongoose
 
 const Chamado = require('./models/Chamado');
 
+const DIR = './uploads/';
 // ================= CHAMADOS =================
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, DIR);
+//   },
+//   filename: (req, file, cb) => {
+//     const fileName = file.originalname
+//       .toLowerCase()
+//       .split(' ')
+//       .join('-');
+//     cb(null, uuidv4() + '-' + fileName);
+//   }
+// });
+
+// const upload = multer({
+//   storage: storage,
+//   fileFilter: (req, file, cb) => {
+//     if (
+//       file.mimetype == 'image/png' ||
+//       file.mimetype == 'image/jpg' ||
+//       file.mimetype == 'image/jpeg'
+//     ) {
+//       cb(null, true);
+//     } else {
+//       cb(null, false);
+//       return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+//     }
+//   }
+// });
+
+/////////////////////////////////////////
 
 app.post('/chamado', (req, res) => {
   //   console.log(req);
@@ -27,7 +61,7 @@ app.post('/chamado', (req, res) => {
 
   const url = req.protocol + '://' + req.get('host');
 
-  // const str = `${url}/backend/uploads/${req.body.anexoNome}`;
+  // const str = `${url}/uploads/${req.body.anexoNome}`;
   const str = `/home/desenv01/estagio/novoprojeto/backend/uploads/${req.body.anexoNome}`;
 
   // const str = `/home/desenv01/estagio/novoprojeto/front/src/components/chamados/uploads/${req.body.anexoNome}`;
@@ -182,7 +216,7 @@ app.get('/exec', async (req, res) => {
 });
 
 //
-const Upload = require('./models/Upload');
+// const Upload = require('./models/Upload');
 
 app.post('/upload', (req, res) => {
   if (req.files === null) {
@@ -193,9 +227,9 @@ app.post('/upload', (req, res) => {
   const id = req.body.id;
   const str = `${id}-${file.name}`;
 
-  const newUpload = new Upload({
-    img: file.buffer
-  });
+  // const newUpload = new Upload({
+  //   img: file.buffer
+  // });
 
   // newUpload.save().then(() => res.send('Upload salvo'));
 
@@ -205,11 +239,25 @@ app.post('/upload', (req, res) => {
       return res.status(500).send(err);
     }
 
+    // const fileStream = fs.createReadStream(
+    //   `/home/desenv01/estagio/novoprojeto/backend/uploads/${str}`
+    // );
+
+    // fileStream.pipe(res);
+
     res.json({
       fileName: file.name,
       filePath: `/uploads/${str}`
     });
   });
+});
+
+app.get('/upload/:_id', async (req, res) => {
+  const chamado = await Chamado.find({ _id: req.params._id });
+
+  const fileStream = fs.createReadStream(`${chamado[0].anexo}`);
+
+  fileStream.pipe(res);
 });
 
 // ========== SPECS

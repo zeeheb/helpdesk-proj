@@ -6,6 +6,10 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import FileSaver from 'file-saver';
 
 class ChamadoItem extends Component {
+  // this.state = {
+
+  // }
+
   onClickDel = () => {
     const _id = this.props.chamado._id;
     this.props.delChamado(_id, this.props.onDelete);
@@ -13,10 +17,29 @@ class ChamadoItem extends Component {
 
   onDownload = () => {
     // const _id = this.props.chamado._id;
-    FileSaver.saveAs(
-      `${this.props.chamado.anexo}`,
-      `${this.props.chamado.nomeArq}`
-    );
+    // downloadImage = async id =>
+    fetch(`http://localhost:3001/upload/${this.props.chamado._id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.blob())
+      .then(res => {
+        this.setState({
+          fileURL: URL.createObjectURL(new Blob([res]), { type: 'image/*' })
+        });
+        // const blobUrl = res.blob();
+        FileSaver.saveAs(
+          `${this.state.fileURL}`,
+          `${this.props.chamado.nomeArq}`
+        );
+      });
+
+    // FileSaver.saveAs(
+    //   `${this.props.chamado.anexo}`,
+    //   `${this.props.chamado.nomeArq}`
+    // );
   };
 
   render() {
