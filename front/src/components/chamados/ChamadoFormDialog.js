@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
-import axios from 'axios';
+// import axios from 'axios';
 
 // import { Typography } from '@material-ui/core';
 // import UploadButton from './UploadButton';
@@ -30,8 +30,8 @@ export default function ChamadoFormDialog(props) {
   const [descricao, setDescricao] = React.useState('');
   const [file, setFile] = React.useState('');
   const [filename, setFilename] = React.useState('');
-  const [uploadedFile, setUploadedFile] = React.useState('');
-  const [fileURL, setfileURL] = React.useState('');
+  // const [uploadedFile, setUploadedFile] = React.useState('');
+  // const [fileURL, setfileURL] = React.useState('');
   // const [filename, setFilename] = React.useState('');
   // const [exec] = React.useState(props.exec);
 
@@ -105,23 +105,8 @@ export default function ChamadoFormDialog(props) {
     const data = new FormData();
     data.append('file', file);
     data.append('id', id);
-    try {
-      const res = await axios.post('http://localhost:3001/upload', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
 
-      // setfileURL(URL.createObjectURL(new Blob([res])), () =>
-      //   window.open(fileURL)
-      // );
-      // window.open(fileURL);
-      // const fileStream = res;
-      const { filename, filePath } = res.data;
-      setUploadedFile({ filename, filePath });
-    } catch (err) {
-      console.log(err);
-    }
+    Actions.saveUploadToDb(data);
   };
 
   // const handleChangeFile = value => {

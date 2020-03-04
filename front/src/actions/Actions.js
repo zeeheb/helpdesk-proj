@@ -2,6 +2,7 @@ import { dispatch } from '../AppDispatcher';
 import ActionTypes from '../ActionTypes';
 // import _ from 'lodash';
 import axios from 'axios';
+import FileSaver from 'file-saver';
 
 class Actions {
   // GET, POST, REMOVE, PUT -  TIPOS =====================================
@@ -199,9 +200,27 @@ class Actions {
           'Content-Type': 'multipart/form-data'
         }
       })
-      .then(res => {
-        alert('salvou upload');
+      .then(() => {
+        // alert('salvou upload');
         // const { filename, filepath } = res.data
+      });
+  };
+
+  downloadImage = chamado => {
+    fetch(`http://localhost:3001/upload/${chamado._id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.blob())
+      .then(res => {
+        const fileURL = URL.createObjectURL(new Blob([res]), {
+          type: 'image/*'
+        });
+
+        FileSaver.saveAs(`${fileURL}`, `${chamado.nomeArq}`);
+        // window.open(fileURL);
       });
   };
 }

@@ -1,14 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // import ActionTypes from '../../ActionTypes';
 // import Actions from '../../actions/Actions';
 // import axios from 'axios';
-import Input from '@material-ui/core/Input';
 import uuid from 'uuid';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -38,7 +35,7 @@ export default function FileUpload(props) {
     setShowUploadBt(true);
   };
 
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault();
     props.onUpload(file);
   };
@@ -60,16 +57,20 @@ export default function FileUpload(props) {
           onChange={onChange}
         />
         <label htmlFor='contained-button-file'>
-          <Button variant='outlined' color='primary' component='span'>
+          <Button fullWidth variant='outlined' color='primary' component='span'>
             FOTO
           </Button>
         </label>
       </div>
-      {/* <Input type='submit' value='Upload'></Input> */}
 
       <div style={{ marginTop: '10px' }}>
         {showUploadBt && (
-          <Button color='secondary' variant='contained' onClick={onSubmit}>
+          <Button
+            fullWidth
+            color='secondary'
+            variant='contained'
+            onClick={onSubmit}
+          >
             <Typography>Enviar</Typography>
           </Button>
         )}

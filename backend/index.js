@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
-const uuid = require('uuid');
 // const multer = require('multer');
 const fs = require('fs');
 
@@ -21,37 +20,7 @@ mongoose
 
 const Chamado = require('./models/Chamado');
 
-const DIR = './uploads/';
 // ================= CHAMADOS =================
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, DIR);
-//   },
-//   filename: (req, file, cb) => {
-//     const fileName = file.originalname
-//       .toLowerCase()
-//       .split(' ')
-//       .join('-');
-//     cb(null, uuidv4() + '-' + fileName);
-//   }
-// });
-
-// const upload = multer({
-//   storage: storage,
-//   fileFilter: (req, file, cb) => {
-//     if (
-//       file.mimetype == 'image/png' ||
-//       file.mimetype == 'image/jpg' ||
-//       file.mimetype == 'image/jpeg'
-//     ) {
-//       cb(null, true);
-//     } else {
-//       cb(null, false);
-//       return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-//     }
-//   }
-// });
 
 /////////////////////////////////////////
 
