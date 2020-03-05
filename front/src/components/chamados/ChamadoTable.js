@@ -37,8 +37,11 @@ export class ChamadoTable extends Component {
   };
 
   loadImage = async () => {
-    const fileURL = await Actions.showImage(this.props.chamado);
-    this.setState({ fileURL: fileURL });
+    const blob = await Actions.showImage(this.props.chamado);
+    const fileURL = URL.createObjectURL(new Blob([blob]), {
+      type: 'image/*'
+    });
+    this.setState({ fileURL: fileURL || this.state.fileURL });
   };
 
   render() {
@@ -132,7 +135,7 @@ export class ChamadoTable extends Component {
               </TableRow>
               <TableRow>
                 <TableCell align='center'>
-                  <img src={this.state.fileURL}></img>
+                  <img alt='imagem' src={this.state.fileURL}></img>
                 </TableCell>
               </TableRow>
             </Table>
