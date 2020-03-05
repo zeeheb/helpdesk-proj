@@ -220,7 +220,25 @@ class Actions {
         });
 
         FileSaver.saveAs(`${fileURL}`, `${chamado.nomeArq}`);
-        // window.open(fileURL);
+        return fileURL;
+      });
+  };
+
+  showImage = chamado => {
+    fetch(`http://localhost:3001/upload/${chamado._id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.blob())
+      .then(res => {
+        const fileURL = URL.createObjectURL(new Blob([res]), {
+          type: 'image/*'
+        });
+
+        return fileURL;
+        // FileSaver.saveAs(`${fileURL}`, `${chamado.nomeArq}`);
       });
   };
 }

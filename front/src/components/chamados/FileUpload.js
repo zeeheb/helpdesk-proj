@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // import ActionTypes from '../../ActionTypes';
 // import Actions from '../../actions/Actions';
 // import axios from 'axios';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 
@@ -27,16 +27,24 @@ export default function FileUpload(props) {
   // const [uploadedFile, setUploadedFile] = React.useState({});
 
   const onChange = e => {
-    const id = uuid.v4();
+    // const id = uuid.v4();
 
+    const auxfiletype = e.target.files[0].type;
+
+    if (auxfiletype !== 'image/jpeg' && 'image/jpg' && 'image/png') {
+      return alert('Apenas imagens');
+    } else if (e.target.files[0].size > 50000) {
+      return alert('Tamanho maior que 50 mb');
+    }
     setFile(e.target.files[0]);
-    setFilename(`${id + '-' + e.target.files[0].name}`);
+    setFilename(e.target.files[0].name);
 
     setShowUploadBt(true);
   };
 
   const onSubmit = e => {
     e.preventDefault();
+    props.onSubmitBtn();
     props.onUpload(file);
   };
 
@@ -71,7 +79,7 @@ export default function FileUpload(props) {
             variant='contained'
             onClick={onSubmit}
           >
-            <Typography>Enviar</Typography>
+            <Typography>Enviar {filename} </Typography>
           </Button>
         )}
       </div>

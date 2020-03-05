@@ -23,6 +23,7 @@ export default function MoveChamadoDialog(props) {
   const typoStyle = {
     float: 'left',
     paddingTop: '5px'
+
     // textAlign: 'center'
   };
 
@@ -161,7 +162,7 @@ export default function MoveChamadoDialog(props) {
           <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus>
 
           <TextField
-            autoFocus
+            // autoFocus
             margin='dense'
             id='name'
             label='Descrição'

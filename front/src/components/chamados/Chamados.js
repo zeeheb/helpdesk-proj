@@ -97,12 +97,12 @@ class Chamados extends Component {
             marginTop: '10px'
           }}
         >
-          <TableCell style={{ flex: 1 }}>
+          {/* <TableCell style={{ flex: 1 }}>
             <Typography variant='h6' align='left'>
               Tipo
             </Typography>
-          </TableCell>
-          <TableCell style={{ flex: 1 }}>
+          </TableCell> */}
+          {/* <TableCell style={{ flex: 1 }}>
             <Typography variant='h6'>Usuário</Typography>
           </TableCell>
           <TableCell style={{ flex: 1 }}>
@@ -113,12 +113,12 @@ class Chamados extends Component {
           </TableCell>
           <TableCell style={{ flex: 1 }}>
             <Typography variant='h6'>Assunto</Typography>
+          </TableCell> */}
+          <TableCell style={{ flex: 3 }}>
+            <Typography variant='h6'>Usuario</Typography>
           </TableCell>
-          <TableCell style={{ flex: 1 }}>
+          <TableCell style={{ flex: 104 }}>
             <Typography variant='h6'>Descrição</Typography>
-          </TableCell>
-          <TableCell style={{ flex: 2 }}>
-            <Typography></Typography>
           </TableCell>
         </TableRow>
 

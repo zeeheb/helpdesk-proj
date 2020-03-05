@@ -29,7 +29,8 @@ export default function ChamadoFormDialog(props) {
   const [assunto, setAssunto] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
   const [file, setFile] = React.useState('');
-  const [filename, setFilename] = React.useState('');
+  // const [filename, setFilename] = React.useState('');
+  const [disabled, setDisabled] = React.useState(true);
   // const [uploadedFile, setUploadedFile] = React.useState('');
   // const [fileURL, setfileURL] = React.useState('');
   // const [filename, setFilename] = React.useState('');
@@ -68,6 +69,7 @@ export default function ChamadoFormDialog(props) {
     e.preventDefault();
     if (!contato || !descricao || !criticidade || !assunto || !tipo || !file) {
       // Actions.getChamadosFromDb();
+      setDisabled(true);
       return alert('Informações faltando');
     }
 
@@ -87,6 +89,7 @@ export default function ChamadoFormDialog(props) {
       nomeArq: file.name
       // fileURL
     };
+    setDisabled(true);
     saveFile(myid);
     Actions.saveChamadoToDb(data);
     setOpen(false);
@@ -98,7 +101,7 @@ export default function ChamadoFormDialog(props) {
 
   const handleUpload = value => {
     setFile(value);
-    setFilename(value.name);
+    // setFilename(value.name);
   };
 
   const saveFile = async id => {
@@ -109,9 +112,9 @@ export default function ChamadoFormDialog(props) {
     Actions.saveUploadToDb(data);
   };
 
-  // const handleChangeFile = value => {
-  //   setFile
-  // }
+  const handleSubmitFile = () => {
+    setDisabled(false);
+  };
 
   // const handleChangeStatus = value => {
   //   setStatus(value);
@@ -188,7 +191,7 @@ export default function ChamadoFormDialog(props) {
             onChange={changeDescricao}
           />
 
-          <FileUpload onUpload={handleUpload} />
+          <FileUpload onSubmitBtn={handleSubmitFile} onUpload={handleUpload} />
 
           {/* <UploadButton></UploadButton> */}
         </DialogContent>
@@ -197,6 +200,7 @@ export default function ChamadoFormDialog(props) {
             Cancelar
           </Button>
           <Button
+            disabled={disabled}
             onClick={e => {
               onSubmit(e);
               handleClose();
