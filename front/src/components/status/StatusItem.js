@@ -16,7 +16,19 @@ export class StatusItem extends Component {
 
     return (
       <div>
-        <TableRow style={rowStyle}>
+        <TableRow
+          style={
+            codigo === 0
+              ? {
+                  display: 'flex',
+                  backgroundColor: '#edeadf',
+                  marginTop: '5px'
+                }
+              : rowStyle
+          }
+
+          // style={rowStyle}
+        >
           <TableCell style={{ flex: 1 }}>
             <Typography>{codigo}</Typography>
           </TableCell>
@@ -27,7 +39,11 @@ export class StatusItem extends Component {
             <EditFormDialog data={this.props.status}></EditFormDialog>
           </TableCell>
           <TableCell style={{ flex: 1, float: 'right' }}>
-            <Button onClick={this.onClickDel}>
+            <Button
+              disabled={codigo === 0}
+              onClick={this.onClickDel}
+              // style={this.props.status.codigo === 0 ? {} : {}}
+            >
               <DeleteIcon></DeleteIcon>
             </Button>
           </TableCell>

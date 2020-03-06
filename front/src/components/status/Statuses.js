@@ -75,7 +75,7 @@ export class Statuses extends Component {
           </TableCell>
         </TableRow>
 
-        <TableRow
+        {/* <TableRow
           style={{
             display: 'flex',
             backgroundColor: '#edeadf',
@@ -88,7 +88,7 @@ export class Statuses extends Component {
           <TableCell style={{ flex: 13 }}>
             <Typography>Status Inicial</Typography>
           </TableCell>
-        </TableRow>
+        </TableRow> */}
 
         {this.state.showError && (
           <SnackBar onDeleteClose={this.onDeleteClose} />
