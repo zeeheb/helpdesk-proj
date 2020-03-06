@@ -30,8 +30,9 @@ class Chamados extends Component {
     Store.removeChangeListener(this.onChangeFunc);
   }
 
-  onChangeFunc = () => {
-    const dataFiltered = Store.getChamadosFilterData();
+  onChangeFunc = async () => {
+    this.handleChangeExec(this.state.exec);
+    const dataFiltered = await Store.getChamadosFilterData();
     if (!dataFiltered) {
       const dataFromStore = Store.getChamadosData();
       this.setState({ chamados: dataFromStore });

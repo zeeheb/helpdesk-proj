@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 export default function FileUpload(props) {
   const classes = useStyles();
   const [showUploadBt, setShowUploadBt] = React.useState(false);
+  const [showImageBt, setShowImageBt] = React.useState(true);
   const [file, setFile] = React.useState('');
   const [filename, setFilename] = React.useState('Escolha uma imagem');
   // const [uploadedFile, setUploadedFile] = React.useState({});
@@ -38,7 +39,7 @@ export default function FileUpload(props) {
     }
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
-
+    setShowImageBt(false);
     setShowUploadBt(true);
   };
 
@@ -65,9 +66,16 @@ export default function FileUpload(props) {
           onChange={onChange}
         />
         <label htmlFor='contained-button-file'>
-          <Button fullWidth variant='outlined' color='primary' component='span'>
-            FOTO
-          </Button>
+          {showImageBt && (
+            <Button
+              fullWidth
+              variant='outlined'
+              color='primary'
+              component='span'
+            >
+              FOTO
+            </Button>
+          )}
         </label>
       </div>
 
