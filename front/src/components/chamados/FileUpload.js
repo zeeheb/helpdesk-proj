@@ -34,7 +34,7 @@ export default function FileUpload(props) {
 
     if (auxfiletype !== 'image/jpeg' && 'image/jpg' && 'image/png') {
       return alert('Apenas imagens');
-    } else if (e.target.files[0].size > 5000000) {
+    } else if (e.target.files[0].size > 5 * 1024 * 1024) {
       return alert('Tamanho maior que 5 gb');
     }
     setFile(e.target.files[0]);

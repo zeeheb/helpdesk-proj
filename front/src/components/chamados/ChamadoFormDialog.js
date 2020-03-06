@@ -76,7 +76,7 @@ export default function ChamadoFormDialog(props) {
       assunto,
       descricao,
       exec: props.exec,
-      status: 0,
+      status: 'Status inicial',
       id: myid,
       anexoNome,
       nomeArq: file.name

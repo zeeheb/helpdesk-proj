@@ -84,6 +84,17 @@ export class ChamadoTable extends Component {
 
               <TableRow style={rowStyle}>
                 <TableCell style={{ flex: 1 }}>
+                  <Typography variant='h6'>Status: </Typography>
+                </TableCell>
+                <TableCell style={{ flex: 3 }}>
+                  <Typography style={typoStyle}>
+                    {this.props.chamado.status}{' '}
+                  </Typography>
+                </TableCell>
+              </TableRow>
+
+              <TableRow style={rowStyle}>
+                <TableCell style={{ flex: 1 }}>
                   <Typography variant='h6'>Contato: </Typography>
                 </TableCell>
                 <TableCell style={{ flex: 3 }}>
@@ -135,7 +146,12 @@ export class ChamadoTable extends Component {
               </TableRow>
               <TableRow>
                 <TableCell align='center'>
-                  <img alt='imagem' src={this.state.fileURL}></img>
+                  <img
+                    height='200'
+                    width='300'
+                    alt='imagem'
+                    src={this.state.fileURL}
+                  ></img>
                 </TableCell>
               </TableRow>
             </Table>
