@@ -32,6 +32,7 @@ export default function TipoFormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+    setDisabled(true);
   };
 
   const changeCodigo = e => {

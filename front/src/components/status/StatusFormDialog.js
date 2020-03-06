@@ -19,7 +19,7 @@ export default function StatusFormDialog() {
   });
 
   const checkInputs = () => {
-    if (!codigo || !descricao) {
+    if (!codigo || !descricao || codigo === '0') {
       setDisabled(true);
     } else {
       setDisabled(false);
@@ -27,15 +27,19 @@ export default function StatusFormDialog() {
   };
 
   const handleClickOpen = () => {
+    setDisabled(true);
     setOpen(true);
   };
 
   const handleClose = () => {
+    setDisabled(true);
     setOpen(false);
   };
 
   const changeCodigo = e => {
-    setCodigo(e.target.value);
+    e.target.value === '0'
+      ? (e.target.value = 1 && setCodigo(1))
+      : setCodigo(e.target.value);
   };
 
   const changeDescricao = e => {
