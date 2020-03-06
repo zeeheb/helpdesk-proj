@@ -50,7 +50,13 @@ export class Statuses extends Component {
   render() {
     return (
       <div>
-        <AddStatus></AddStatus>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <div style={{ flex: 6 }}></div>
+          <div style={{ flex: 5 }}>
+            <AddStatus></AddStatus>
+          </div>
+          <div style={{ flex: 6 }}></div>
+        </div>
 
         <TableRow
           style={{

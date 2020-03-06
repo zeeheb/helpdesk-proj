@@ -50,7 +50,14 @@ export class Tipos extends Component {
   render() {
     return (
       <div>
-        <AddTipo addTipo={this.addTipo}></AddTipo>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <div style={{ flex: 6 }}></div>
+          <div style={{ flex: 5 }}>
+            <AddTipo addTipo={this.addTipo}></AddTipo>
+          </div>
+          <div style={{ flex: 6 }}></div>
+        </div>
+
         <TableRow
           style={{
             display: 'flex',
