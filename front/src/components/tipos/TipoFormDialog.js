@@ -12,6 +12,19 @@ export default function TipoFormDialog() {
   const [open, setOpen] = React.useState(false);
   const [codigo, setCodigo] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
+  const [disabled, setDisabled] = React.useState(true);
+
+  React.useEffect(() => {
+    checkInputs();
+  });
+
+  const checkInputs = () => {
+    if (!codigo || !descricao) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,6 +50,7 @@ export default function TipoFormDialog() {
 
     const data = { codigo, descricao };
     Actions.saveTipoToDb(data);
+    setDisabled(true);
     setOpen(false);
   };
 
@@ -87,6 +101,7 @@ export default function TipoFormDialog() {
               onSubmit(e);
               handleClose();
             }}
+            disabled={disabled}
             variant='outlined'
             color='black'
           >

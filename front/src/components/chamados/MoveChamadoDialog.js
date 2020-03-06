@@ -31,10 +31,23 @@ export default function MoveChamadoDialog(props) {
     display: 'flex'
   };
 
+  const [disabled, setDisabled] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [descricao, setDescricao] = React.useState('');
   const [exec, setExec] = React.useState(props.data.chamado);
   const [status, setStatus] = React.useState('');
+
+  React.useEffect(() => {
+    checkInputs();
+  });
+
+  const checkInputs = () => {
+    if (!status || !exec || !descricao) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  };
 
   const handleClickOpen = () => {
     Actions.getChamadosFromDb();
@@ -43,6 +56,7 @@ export default function MoveChamadoDialog(props) {
 
   const handleClose = () => {
     // Actions.getChamadosFromDb();
+    setDisabled(true);
     setOpen(false);
   };
 
@@ -57,6 +71,7 @@ export default function MoveChamadoDialog(props) {
 
   const changeDescricao = e => {
     setDescricao(e.target.value);
+    setDisabled(false);
   };
 
   const onSubmit = e => {
@@ -69,6 +84,7 @@ export default function MoveChamadoDialog(props) {
       const data = { status, exec, descricao };
       Actions.editChamadoFromDb(data, props.data._id);
       setOpen(false);
+      setDisabled(true);
     } else return alert('Escolha outro usuário');
   };
 
@@ -180,6 +196,7 @@ export default function MoveChamadoDialog(props) {
               onSubmit(e);
               handleClose();
             }}
+            disabled={disabled}
             variant='outlined'
             color='black'
           >

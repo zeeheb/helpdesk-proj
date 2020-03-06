@@ -12,6 +12,19 @@ export default function StatusFormDialog() {
   const [open, setOpen] = React.useState(false);
   const [codigo, setCodigo] = React.useState(false);
   const [descricao, setDescricao] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(true);
+
+  React.useEffect(() => {
+    checkInputs();
+  });
+
+  const checkInputs = () => {
+    if (!codigo || !descricao) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,6 +50,7 @@ export default function StatusFormDialog() {
 
     const data = { codigo, descricao };
     Actions.saveStatusToDb(data);
+    setDisabled(true);
     setOpen(false);
   };
 
@@ -87,6 +101,7 @@ export default function StatusFormDialog() {
               onSubmit(e);
               handleClose();
             }}
+            disabled={disabled}
             variant='outlined'
             color='black'
           >

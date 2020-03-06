@@ -36,12 +36,25 @@ export default function ChamadoFormDialog(props) {
   // const [filename, setFilename] = React.useState('');
   // const [exec] = React.useState(props.exec);
 
+  React.useEffect(() => {
+    checkInputs();
+  });
+
+  const checkInputs = () => {
+    if (!contato || !descricao || !criticidade || !assunto || !tipo || !file) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     Actions.getChamadosFromDb();
+    setDisabled(true);
     setOpen(false);
   };
 
