@@ -55,7 +55,8 @@ export class Tipos extends Component {
           style={{
             display: 'flex',
             backgroundColor: '#e3ddcc',
-            marginTop: '10px'
+            marginTop: '10px',
+            marginBottom: '5px'
           }}
         >
           <TableCell style={{ flex: 1 }}>

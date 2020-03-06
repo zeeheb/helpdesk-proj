@@ -8,33 +8,18 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Actions from '../../actions/Actions';
 import SelectTipo from './SelectTipo';
-// import axios from 'axios';
-
-// import { Typography } from '@material-ui/core';
-// import UploadButton from './UploadButton';
 import FileUpload from './FileUpload';
 import uuid from 'uuid';
-// import uuid from 'uuid';
-// import { Typography } from '@material-ui/core';
-// import SelectStatus from './SelectStatus';
-// import Store from '../../stores/Store';
 
 export default function ChamadoFormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [tipo, setTipo] = React.useState('');
-  // const [execs] = React.useState(props.execs);
-  // const [exec, setExec] = React.useState('');
   const [contato, setContato] = React.useState('');
   const [criticidade, setCriticidade] = React.useState('');
   const [assunto, setAssunto] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
   const [file, setFile] = React.useState('');
-  // const [filename, setFilename] = React.useState('');
   const [disabled, setDisabled] = React.useState(true);
-  // const [uploadedFile, setUploadedFile] = React.useState('');
-  // const [fileURL, setfileURL] = React.useState('');
-  // const [filename, setFilename] = React.useState('');
-  // const [exec] = React.useState(props.exec);
 
   React.useEffect(() => {
     checkInputs();
@@ -58,10 +43,6 @@ export default function ChamadoFormDialog(props) {
     setOpen(false);
   };
 
-  // const changeExec = e => {
-  //   setExec(e.target.value);
-  // };
-
   const changeContato = e => {
     setContato(e.target.value);
   };
@@ -81,7 +62,6 @@ export default function ChamadoFormDialog(props) {
   const onSubmit = e => {
     e.preventDefault();
     if (!contato || !descricao || !criticidade || !assunto || !tipo || !file) {
-      // Actions.getChamadosFromDb();
       setDisabled(true);
       return alert('Informações faltando');
     }
@@ -100,7 +80,6 @@ export default function ChamadoFormDialog(props) {
       id: myid,
       anexoNome,
       nomeArq: file.name
-      // fileURL
     };
     setDisabled(true);
     saveFile(myid);
@@ -114,7 +93,6 @@ export default function ChamadoFormDialog(props) {
 
   const handleUpload = value => {
     setFile(value);
-    // setFilename(value.name);
   };
 
   const saveFile = async id => {
@@ -128,10 +106,6 @@ export default function ChamadoFormDialog(props) {
   const handleSubmitFile = () => {
     setDisabled(false);
   };
-
-  // const handleChangeStatus = value => {
-  //   setStatus(value);
-  // };
 
   return (
     <div>
@@ -153,8 +127,6 @@ export default function ChamadoFormDialog(props) {
       >
         <DialogTitle id='form-dialog-title'>Novo chamado!</DialogTitle>
         <DialogContent>
-          {/* <Typography variant='h6'>Chamado para: {props.exec}</Typography> */}
-
           <TextField
             margin='dense'
             id='name'
@@ -166,10 +138,8 @@ export default function ChamadoFormDialog(props) {
             InputProps={{
               readOnly: true
             }}
-            // onChange={changeContato}
           />
           <SelectTipo onChangeTipo={handleChangeTipo}></SelectTipo>
-          {/* <SelectStatus onChangeStatus={handleChangeStatus}></SelectStatus> */}
 
           <TextField
             margin='dense'
@@ -205,8 +175,6 @@ export default function ChamadoFormDialog(props) {
           />
 
           <FileUpload onSubmitBtn={handleSubmitFile} onUpload={handleUpload} />
-
-          {/* <UploadButton></UploadButton> */}
         </DialogContent>
         <DialogActions>
           <Button variant='outlined' onClick={handleClose} color='black'>

@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // import uuid from 'uuid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,8 +26,7 @@ export default function FileUpload(props) {
   const [showImageBt, setShowImageBt] = React.useState(true);
   const [file, setFile] = React.useState('');
   const [filename, setFilename] = React.useState('Escolha uma imagem');
-  // const [uploadedFile, setUploadedFile] = React.useState({});
-
+  const [showAlert, setShowAlert] = React.useState(false);
   const onChange = e => {
     // const id = uuid.v4();
 
@@ -47,15 +47,12 @@ export default function FileUpload(props) {
     e.preventDefault();
     props.onSubmitBtn();
     props.onUpload(file);
+    setShowUploadBt(false);
+    setShowAlert(true);
   };
 
   return (
     <div style={{ marginTop: '10px' }}>
-      {/* <form onSubmit={onSubmit}> */}
-      {/* <div>
-          <Input type='file' onChange={onChange}></Input>
-          <label>{filename}</label>
-      </div> */}
       <div>
         <input
           accept='image/*'
@@ -91,6 +88,12 @@ export default function FileUpload(props) {
           </Button>
         )}
       </div>
+
+      {showAlert && (
+        <Alert>
+          <AlertTitle>Imagem enviada com sucesso!</AlertTitle>
+        </Alert>
+      )}
       {/* </form> */}
     </div>
   );
