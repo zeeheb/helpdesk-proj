@@ -12,12 +12,17 @@ function Chamado() {
     <div style={{ positon: 'relative', minHeight: '100vh' }}>
       <header style={headerStyle}>
         <Typography variant='h3'>Chamados</Typography>
-        <Link style={linkStyle} to='/tipos'>
-          <Typography>Tipos</Typography>
-        </Link>
-        <Link style={linkStyle} to='/status'>
-          <Typography>Status</Typography>
-        </Link>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flex: 6 }}></div>
+          <Link style={linkStyle} to='/tipos'>
+            <Typography>Tipos</Typography>
+          </Link>
+          <Typography style={{ flex: 0.2 }}> | </Typography>
+          <Link style={linkStyle} to='/status'>
+            <Typography> Status</Typography>
+          </Link>
+          <div style={{ flex: 6 }}></div>
+        </div>
       </header>
 
       <Chamados></Chamados>
