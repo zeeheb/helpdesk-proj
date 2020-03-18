@@ -200,9 +200,15 @@ class Actions {
           'Content-Type': 'multipart/form-data'
         }
       })
-      .then(() => {
+      .then(res => {
+        alert('chegou aqui');
+        alert(res.msg);
+        // alert(res.msg);
         // alert('salvou upload');
         // const { filename, filepath } = res.data
+      })
+      .catch(err => {
+        alert(err.response.data);
       });
   };
 
@@ -215,6 +221,8 @@ class Actions {
     })
       .then(res => res.blob())
       .then(res => {
+        // alert(res.status);
+
         const fileURL = URL.createObjectURL(new Blob([res]), {
           type: 'image/*'
         });

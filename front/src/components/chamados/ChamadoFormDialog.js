@@ -19,14 +19,14 @@ export default function ChamadoFormDialog(props) {
   const [assunto, setAssunto] = React.useState('');
   const [descricao, setDescricao] = React.useState('');
   const [file, setFile] = React.useState('');
-  const [disabled, setDisabled] = React.useState(true);
+  const [disabled, setDisabled] = React.useState(false);
 
   React.useEffect(() => {
     checkInputs();
   });
 
   const checkInputs = () => {
-    if (!contato || !descricao || !criticidade || !assunto || !tipo || !file) {
+    if (!contato || !descricao || !criticidade || !assunto || !tipo) {
       setDisabled(true);
     } else {
       setDisabled(false);
@@ -61,7 +61,7 @@ export default function ChamadoFormDialog(props) {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!contato || !descricao || !criticidade || !assunto || !tipo || !file) {
+    if (!contato || !descricao || !criticidade || !assunto || !tipo) {
       setDisabled(true);
       return alert('Informações faltando');
     }
@@ -69,6 +69,7 @@ export default function ChamadoFormDialog(props) {
     const myid = uuid.v4();
     const anexoNome = `${myid}-${file.name}`;
 
+    saveFile(myid);
     const data = {
       tipo,
       contato,
@@ -80,9 +81,9 @@ export default function ChamadoFormDialog(props) {
       id: myid,
       anexoNome,
       nomeArq: file.name
+      // tipoArq: file.type
     };
     setDisabled(true);
-    saveFile(myid);
     Actions.saveChamadoToDb(data);
     setOpen(false);
   };
@@ -93,12 +94,15 @@ export default function ChamadoFormDialog(props) {
 
   const handleUpload = value => {
     setFile(value);
+    // cb();
+    // setTimeout(10000);
   };
 
-  const saveFile = async id => {
+  const saveFile = id => {
     const data = new FormData();
     data.append('file', file);
     data.append('id', id);
+    // data.append('type', file.type);
 
     Actions.saveUploadToDb(data);
   };

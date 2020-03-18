@@ -45,7 +45,8 @@ app.post('/chamado', (req, res) => {
     exec: req.body.exec,
     id: req.body.id,
     anexo: str,
-    nomeArq: req.body.nomeArq
+    nomeArq: req.body.nomeArq,
+    tipoArq: req.body.tipoArq
 
     // anexos: req.body.anexos
   });
@@ -187,38 +188,51 @@ app.get('/exec', async (req, res) => {
 //
 // const Upload = require('./models/Upload');
 
-app.post('/upload', (req, res) => {
-  if (req.files === null) {
-    return res.status(400).json({ msg: 'No file uploaded' });
-  }
-  // const id = uuid.v4();
-  const file = req.files.file;
-  const id = req.body.id;
-  const str = `${id}-${file.name}`;
-
-  // const newUpload = new Upload({
-  //   img: file.buffer
-  // });
-
-  // newUpload.save().then(() => res.send('Upload salvo'));
-
-  file.mv(`${__dirname}/uploads/${str}`, err => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send(err);
+app.post('/upload', async (req, res) => {
+  try {
+    if (!req.files) {
+      throw Error();
+      // return res.status(422).json({ msg: 'No file uploaded' });
     }
 
-    // const fileStream = fs.createReadStream(
-    //   `/home/desenv01/estagio/novoprojeto/backend/uploads/${str}`
-    // );
+    // if (req.files.file.mimetype !== 'image/jpg') {
+    //   alert('post type');
+    //   return res.status(422).json({ msg: 'Arquivo de imagem apenas' });
+    // }
+    // else {
+    // const id = uuid.v4();
+    const file = req.files.file;
+    const id = req.body.id;
+    const str = `${id}-${file.name}`;
 
-    // fileStream.pipe(res);
+    // const newUpload = new Upload({
+    //   img: file.buffer
+    // });
 
-    res.json({
-      fileName: file.name,
-      filePath: `/uploads/${str}`
+    // newUpload.save().then(() => res.send('Upload salvo'));
+
+    file.mv(`${__dirname}/uploads/${str}`, err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+
+      // const fileStream = fs.createReadStream(
+      //   `/home/desenv01/estagio/novoprojeto/backend/uploads/${str}`
+      // );
+
+      // fileStream.pipe(res);
+
+      res.json({
+        fileName: file.name,
+        filePath: `/uploads/${str}`
+      });
     });
-  });
+  } catch (err) {
+    res.status(422).send('Falta arquivo');
+    // return;
+  }
+  // }
 });
 
 app.get('/upload/:_id', async (req, res) => {

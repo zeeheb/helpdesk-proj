@@ -6,7 +6,7 @@ import Actions from '../../actions/Actions';
 import { MenuItem } from '@material-ui/core';
 
 export default function SelectTipo(props) {
-  const [tipoValor, setTipoValor] = React.useState('');
+  const [tipoValor, setTipoValor] = React.useState('admin');
   const [tipos, setTipos] = React.useState([]);
 
   React.useEffect(() => {
